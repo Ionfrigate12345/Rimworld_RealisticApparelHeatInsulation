@@ -1,0 +1,5 @@
+C:\SteamLibrary\steamapps\common\RimWorld\Mods\SOS2VEEPatch\1.5\Assemblies\SOS2VEEPatch.dll
+D:\OneDrive\Games\RimworldModSources\SOS2VEEPatch\Source\SOS2VEEPatch\obj\Debug\SOS2VEEPatch.csproj.AssemblyReference.cache
+D:\OneDrive\Games\RimworldModSources\SOS2VEEPatch\Source\SOS2VEEPatch\obj\Debug\SOS2VEEPatch.csproj.CoreCompileInputs.cache
+D:\OneDrive\Games\RimworldModSources\SOS2VEEPatch\Source\SOS2VEEPatch\obj\Debug\SOS2VEEP.DA172B54.Up2Date
+D:\OneDrive\Games\RimworldModSources\SOS2VEEPatch\Source\SOS2VEEPatch\obj\Debug\SOS2VEEPatch.dll

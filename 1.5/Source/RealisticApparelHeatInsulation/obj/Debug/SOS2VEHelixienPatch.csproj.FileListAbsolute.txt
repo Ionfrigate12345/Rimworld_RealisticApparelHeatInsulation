@@ -1,0 +1,4 @@
+C:\SteamLibrary\steamapps\common\RimWorld\Mods\SOS2VEHelixienPatch\1.5\Assemblies\SOS2VEHelixienPatch.dll
+D:\OneDrive\Games\RimworldModSources\SOS2VEHelixienPatch\Source\SOS2VEHelixienPatch\obj\Debug\SOS2VEHelixienPatch.csproj.AssemblyReference.cache
+D:\OneDrive\Games\RimworldModSources\SOS2VEHelixienPatch\Source\SOS2VEHelixienPatch\obj\Debug\SOS2VEHelixienPatch.csproj.CoreCompileInputs.cache
+D:\OneDrive\Games\RimworldModSources\SOS2VEHelixienPatch\Source\SOS2VEHelixienPatch\obj\Debug\SOS2VEHelixienPatch.dll

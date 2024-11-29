@@ -1,0 +1,6 @@
+C:\SteamLibrary\steamapps\common\RimWorld\Mods\SOS2VEEPatch\1.5\Assemblies\SOS2VEEPatch.dll
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.csproj.AssemblyReference.cache
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.csproj.CoreCompileInputs.cache
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\Realisti.BB268068.Up2Date
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\SOS2VEEPatch.dll
+C:\SteamLibrary\steamapps\common\RimWorld\Mods\RealisticApparelHeatInsulation\1.5\Assemblies\SOS2VEEPatch.dll
