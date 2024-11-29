@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Linq;
 using HarmonyLib;
-using RimWorld;
-using SaveOurShip2;
-using VEE.RegularEvents;
 using Verse;
 
 namespace RealisticApparelHeatInsulation
