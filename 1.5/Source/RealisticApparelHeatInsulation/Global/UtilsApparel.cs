@@ -7,7 +7,7 @@ using Verse;
 
 namespace RealisticApparelHeatInsulation.Global
 {
-    internal class ToolsApparel
+    internal class UtilsApparel
     {
 
         public static bool HasSOS2DecompressionResistanceStat(ThingDef thingDef)

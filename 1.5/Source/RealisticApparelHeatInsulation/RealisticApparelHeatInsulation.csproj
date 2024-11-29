@@ -56,10 +56,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Global\ToolsApparel.cs" />
+    <Compile Include="RAHIDefOf.cs" />
+    <Compile Include="Global\UtilsApparel.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HarmonyUtils.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Model\PawnsHeatInsulationAdjuster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
