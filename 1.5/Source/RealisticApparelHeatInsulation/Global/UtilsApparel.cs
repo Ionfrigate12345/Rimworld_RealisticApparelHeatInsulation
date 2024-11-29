@@ -9,14 +9,9 @@ namespace RealisticApparelHeatInsulation.Global
 {
     internal class UtilsApparel
     {
-
         public static bool HasSOS2DecompressionResistanceStat(ThingDef thingDef)
         {
-            if (!ModsConfig.IsActive("kentington.saveourship2"))
-            {
-                return false;
-            }
-            return thingDef.equippedStatOffsets.Where(offset => offset.stat.defName == "DecompressionResistance").ToList().Count > 0;
+             return thingDef.comps.Any(comp => comp.compClass?.FullName == "SaveOurShip2.CompEVA");
         }
     }
 }

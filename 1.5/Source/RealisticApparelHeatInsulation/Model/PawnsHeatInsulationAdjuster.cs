@@ -60,15 +60,30 @@ namespace SOS2VEEPatch.Model
 
                 //Calculate apparel heat insulation modifier and apply to pawn hediff
 
-                //1. Instead of increasing max comfortable temperature(MaxCT) like vanilla, it will mostly reduce it instead.
-                //   Each layer of each body part (except head) will reduce max confortable temperature by x, where x is 20% of its original MaxCT bonus value.
-                //2. Some apparels are exempted from this reduction: Apparel_BasicShirt, Apparel_Corset, Apparel_Tribal, Apparel_KidTribal
-                //3. Some apparels uses its MinCT (cold insulation bonus) as MaxCT reduction: Apparel_Parka, Apparel_KidParka
-                //4. For Heat Insulation Clothings like duster, the bonus is applied only when there aren't humidity penalties, otherwise they will have penalty like others above.
-                //5. For armor type clothing (those with fixed value of Insulation_Heat), the reduction value is fixed and loaded on game startup.
-                //6. If the sum of all apparels reach a certain percentage of total carry weight, MaxCT will reduce even more
-                //   -20 when >=80%, -10 when >=50%, -5 when >=30%, -2 when >=10%  
-                //7. Human pawns cannot have MaxCT < 21
+                /** 
+                - Instead of increasing max comfortable temperature(MaxCT) by most clothings, it will mostly reduce it instead.
+                    The reduction value x is:
+                        Max(MaxCT, MinCT) * 0.2
+                    Where MacCT is the vanilla heat insulation MaxCT bonus, MinCT is the vanilla cold insulation bonus.
+                - Apparels have 2x extra MaxCT reduction: Apparel_Parka, Apparel_KidParka
+                - For heavier apparels between 5-10kg, each extra kg above 5 will reduce MaxCT by 0.2.
+                - For heavier apparels more than 10kg, each extra kg above 10 will reduce MaxCT by 0.5.
+                - For Heat Insulation Clothings like duster, the bonus is applied only when there aren't humidity penalties.
+                    In case of humidity penalties, Heat Insulation Clothings will reduce MaxCT by 10% of its vanilla MaxCT increasing value.
+                - Some basic apparels have MaxCT reduction permanently 0: Apparel_BasicShirt, Apparel_Pants, Apparel_Corset, Apparel_Tribal, Apparel_KidTribal
+                - Phoenix Armor permanently keeps its original heat insulation bonus regardless of calculations above.
+                - Same for all clothings with EVA decompression resistance from SOS2. 
+                    The apparel doesn't have to come from SOS2 itself, this rule is applied to all modded apparels with EVA compatibility depending on your modlist..
+                    This is for immersion because an apparel that can survive the space vacuum is obviously much more heat resilient. 
+                    Also, SOS2 doesn't have to be installed to get this feature applied. RAHI will simply check if "SaveOurShip2.CompEVA" compClass exists in ThingDef XML.
+                    Example of modded apparels that keep their original MaxCT bonus (list not exhaustive): 
+                        Eccentric Tech - Angel Apparel Ancient Mech Armor (only those with EVA compatibility)
+                        Ancient Mech Armors
+                - If the sum of all apparels reach a certain percentage of total carry weight, MaxCT will reduce even more
+                    -20 when >=80%, -10 when >=50%, -5 when >=30%, -2 when >=10%  
+                - Heat resistance gene can half the MaxCT reduction from this mod.
+                - Human pawns cannot have MaxCT < 21
+                */
             }
         }
     }
