@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\MaxCTPenalty.cs" />
+    <Compile Include="Global\UtilsPawn.cs" />
     <Compile Include="Model\RAHIModSettings.cs" />
     <Compile Include="RAHIDefOf.cs" />
     <Compile Include="Global\UtilsApparel.cs" />
