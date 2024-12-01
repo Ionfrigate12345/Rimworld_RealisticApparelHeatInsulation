@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RimWorld;
 using Verse;
 
-namespace SOS2VEEPatch
+namespace RAHI.Def
 {
     [DefOf]
     public static class RAHIDefOf
@@ -29,5 +29,7 @@ namespace SOS2VEEPatch
         public static GeneDef MaxTemp_SmallIncrease;
         public static GeneDef MaxTemp_LargeIncrease;
 
+        //Hediff
+        public static HediffDef RAHI_AdjustedMaxCT;
     }
 }

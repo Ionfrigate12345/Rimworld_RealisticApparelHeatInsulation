@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace SOS2VEEPatch.Model
+namespace RAHI.Model
 {
     public class RAHIModSettings : ModSettings
     {

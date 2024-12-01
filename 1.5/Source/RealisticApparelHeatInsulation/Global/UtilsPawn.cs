@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RimWorld;
-using SOS2VEEPatch;
+using RAHI;
 using Verse;
+using RAHI.Def;
 
 namespace RealisticApparelHeatInsulation.Global
 {

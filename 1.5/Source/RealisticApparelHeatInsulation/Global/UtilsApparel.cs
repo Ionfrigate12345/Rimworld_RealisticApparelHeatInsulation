@@ -31,7 +31,6 @@ namespace RealisticApparelHeatInsulation.Global
                 || apparel.def.defName == "Apparel_KidTribal"
                 ;
         }
-
         public static float GetApparelDefaultMaxComfortableTemperatureBonus(Apparel apparel)
         {
             var statModifierIH = apparel.def.statBases.Find(statModifier => statModifier.stat.defName == StatDefOf.Insulation_Heat.defName);

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SOS2VEEPatch.Model;
+using RAHI.Model;
 using UnityEngine;
 using Verse;
 
-namespace SOS2VEEPatch.View
+namespace RAHI.View
 {
     public class RAHIModWindow : Mod
     {

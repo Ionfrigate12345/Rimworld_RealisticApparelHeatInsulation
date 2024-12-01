@@ -61,10 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Def\Hediff\HediffComp_DescriptionModifier.cs" />
+    <Compile Include="Def\Hediff\HediffComp_StatModifier.cs" />
     <Compile Include="Entity\MaxCTPenalty.cs" />
     <Compile Include="Global\UtilsPawn.cs" />
     <Compile Include="Model\RAHIModSettings.cs" />
-    <Compile Include="RAHIDefOf.cs" />
+    <Compile Include="Def\RAHIDefOf.cs" />
     <Compile Include="Global\UtilsApparel.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HarmonyUtils.cs" />

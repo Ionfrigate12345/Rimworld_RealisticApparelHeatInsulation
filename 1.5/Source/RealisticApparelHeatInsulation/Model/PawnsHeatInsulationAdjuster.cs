@@ -5,14 +5,16 @@ using System.Security.Cryptography;
 using RealisticApparelHeatInsulation.Global;
 using RimWorld;
 using RimWorld.Planet;
-using SOS2VEEPatch.Entity;
-using SOS2VEEPatch.View;
+using RAHI.Entity;
+using RAHI.View;
 using UnityEngine;
 using Verse;
 using static UnityEngine.Scripting.GarbageCollector;
 using Verse.AI;
+using RAHI.Def;
+using RAHI.Def.Hediff;
 
-namespace SOS2VEEPatch.Model
+namespace RAHI.Model
 {
     public class PawnsHeatInsulationAdjuster : WorldComponent
     {
@@ -57,7 +59,12 @@ namespace SOS2VEEPatch.Model
                 if (temperature <= 30)
                 {
                     //No script needed if ambient temperature isn't high enough.
-                    //TODO: Pawn RAHI hediff removed
+                    //Pawn RAHI hediff removed
+                    var pawnHediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x => x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName).FirstOrDefault();
+                    if(pawnHediffAdjustedMaxCT != null)
+                    {
+                        pawn.health.RemoveHediff(pawnHediffAdjustedMaxCT);
+                    }
                     continue;
                 }
 
@@ -140,14 +147,46 @@ namespace SOS2VEEPatch.Model
                 */
 
                 /**
-                 Human pawns cannot have MaxCT < 21
+                 Calculate final maxCT. Human pawns cannot have MaxCT < 21
                 */
                 float maxCTPenaltiesApparelsTotal = CalculateMaxCTPenaltiesApparelTotal(maxCTPenalties);
                 float maxCTPenaltiesTotal = (maxCTPenaltiesApparelsTotal + maxCTPenaltiesTotalApparelsMassKg) * (1 - maxCTPenaltiesGenesReductionPercentage);
                 float finalMaxCT = maxCTRace - maxCTPenaltiesTotal + maxCTPenaltiesGenesReductionValue + maxCTBonusFromExposedBodyPart;
+                finalMaxCT = Math.Max(finalMaxCT, 21);
 
                 /**Apply new maxCT to pawn hediff */
+                var hediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x => x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName).FirstOrDefault();
+                if(hediffAdjustedMaxCT != null)
+                {
+                    hediffAdjustedMaxCT = HediffMaker.MakeHediff(RAHIDefOf.RAHI_AdjustedMaxCT, pawn);
+                    pawn.health.AddHediff(hediffAdjustedMaxCT);
+                }
 
+                //Dynamic description
+                var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
+                comp.CustomDescription = "RAHI has adjusted the maximum comfortable temperature for this pawn. New value: " + finalMaxCT;
+
+                // TODO: Show details for each piece of apparel if mod config is active.
+
+                
+                // Dynamic stat to adjust maxCT of pawn
+                var statModifierComp = hediffAdjustedMaxCT.TryGetComp<HediffComp_StatModifier>();
+                var comfyTempMaxModifier = statModifierComp.Props.statOffsets.FirstOrDefault(
+                    modifier => modifier.stat == StatDefOf.ComfyTemperatureMax
+                );
+
+                if (comfyTempMaxModifier != null)
+                {
+                    comfyTempMaxModifier.value = finalMaxCT;
+                }
+                else
+                {
+                    statModifierComp.Props.statOffsets.Add(new StatModifier
+                    {
+                        stat = StatDefOf.ComfyTemperatureMax,
+                        value = finalMaxCT
+                    });
+                }
             }
         }
 
@@ -199,9 +238,9 @@ namespace SOS2VEEPatch.Model
             {
                 float maxCTReduction = 0;
 
+                float defaultMaxCTBonus = UtilsApparel.GetApparelDefaultMaxComfortableTemperatureBonus(apparel);
                 if (!UtilsApparel.IsBaseClothingWithoutPenalty(apparel))
                 {
-                    float defaultMaxCTBonus = UtilsApparel.GetApparelDefaultMaxComfortableTemperatureBonus(apparel);
                     float defaultMinCTBonus = UtilsApparel.GetApparelDefaultMinComfortableTemperatureBonus(apparel);
                     float massKg = UtilsApparel.GetApparelMassKg(apparel);
 
@@ -219,7 +258,7 @@ namespace SOS2VEEPatch.Model
                     }
                 }
 
-                maxCTPenalties.Add(new MaxCTPenalty(apparel, maxCTReduction + humidityPenaltyPerApparelTotal));
+                maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, maxCTReduction + humidityPenaltyPerApparelTotal));
             }
             return maxCTPenalties;
         }
@@ -242,7 +281,7 @@ namespace SOS2VEEPatch.Model
                     maxCTReduction = defaultMaxCTBonus //For voiding default maxCT bonus before applying reduction
                         + defaultMaxCTBonus * RAHIModWindow.Instance.settings.maxCTReductionPerVanillaBonusHIA;
 
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel, maxCTReduction));
+                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, maxCTReduction));
                     continue;
                 }
 
@@ -251,21 +290,17 @@ namespace SOS2VEEPatch.Model
                         || biome == RAHIDefOf.ExtremeDesert
                         || biome == RAHIDefOf.AridShrubland)
                 {
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel,
-                        -defaultMaxCTBonus * 0.25f
-                        ));
+                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, -defaultMaxCTBonus * 0.25f));
                 }
                 //Temperate Forest can benefit from reduced heat insulation bonus compared with vanilla
                 else if (biome == BiomeDefOf.TemperateForest)
                 {
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel,
-                        defaultMaxCTBonus * 0.5f
-                        ));
+                    maxCTPenalties.Add(new MaxCTPenalty(apparel,defaultMaxCTBonus, defaultMaxCTBonus * 0.5f));
                 }
                 //For all other non-humidity biomes (cold biomes), HIA wont get heat insulation nor penalty
                 else
                 {
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus));
+                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, defaultMaxCTBonus));
                 }
             }
             return maxCTPenalties;
