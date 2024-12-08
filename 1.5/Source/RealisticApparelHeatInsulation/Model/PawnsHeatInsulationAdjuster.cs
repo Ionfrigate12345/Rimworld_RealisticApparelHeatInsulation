@@ -78,8 +78,8 @@ namespace RAHI.Model
                     * In wet biomes and weathers, pawns will suffer more maxHC penalty for each clothing piece worn.
                     * Will apply when temperature is above 30 and one of the following condition applies:*/
                 CalculateMaxCTPenaltyHumidity(pawn, biome, 
-                    out float humidityPenaltyPerApparelBiome, 
-                    out float humidityPenaltyPerApparelWeather, 
+                    out float maxCTHumidityPenaltyPerApparelBiome, 
+                    out float maxCTHumidityPenaltyPerApparelWeather, 
                     out float humidityPenaltyPerApparelTotal
                     );
 
@@ -124,8 +124,8 @@ namespace RAHI.Model
                 - Heat tolerance/super-tolerance gene from Biotech can reduce all MaxCT reductions from this mod by 25%/50%
                 */
                 CalculateMaxCTPenaltyGenesReduction(pawn, 
-                    out float maxCTPenaltiesGenesReductionValue, 
-                    out float maxCTPenaltiesGenesReductionPercentage
+                    out float maxCTBonusFromGenesValue, 
+                    out float maxCTBonusFromGenesercentage
                     );
 
                 /** 
@@ -150,8 +150,8 @@ namespace RAHI.Model
                  Calculate final maxCT. Human pawns cannot have MaxCT < 21
                 */
                 float maxCTPenaltiesApparelsTotal = CalculateMaxCTPenaltiesApparelTotal(maxCTPenalties);
-                float maxCTPenaltiesTotal = (maxCTPenaltiesApparelsTotal + maxCTPenaltiesTotalApparelsMassKg) * (1 - maxCTPenaltiesGenesReductionPercentage);
-                float finalMaxCT = maxCTRace - maxCTPenaltiesTotal + maxCTPenaltiesGenesReductionValue + maxCTBonusFromExposedBodyPart;
+                float maxCTPenaltiesTotal = (maxCTPenaltiesApparelsTotal + maxCTPenaltiesTotalApparelsMassKg) * (1 - maxCTBonusFromGenesercentage);
+                float finalMaxCT = maxCTRace - maxCTPenaltiesTotal + maxCTBonusFromGenesValue + maxCTBonusFromExposedBodyPart;
                 finalMaxCT = Math.Max(finalMaxCT, 21);
 
                 /**Apply new maxCT to pawn hediff */
@@ -166,8 +166,28 @@ namespace RAHI.Model
                 var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
                 comp.CustomDescription = "RAHI has adjusted the maximum comfortable temperature for this pawn. New value: " + finalMaxCT;
 
-                // TODO: Show details for each piece of apparel if mod config is active.
-
+                comp.CustomDescription += "\n";
+                comp.CustomDescription += "\nDetails:";
+                //Show details for each piece of apparel if mod config is active.
+                comp.CustomDescription += "\nRace vanilla:" + maxCTRace;
+                comp.CustomDescription += "\nGene penalty reduction:" + maxCTBonusFromGenesercentage + "%";
+                comp.CustomDescription += "\nGene bonus:" + maxCTBonusFromGenesValue;
+                comp.CustomDescription += "\nExposed body parts:" + maxCTBonusFromExposedBodyPart;
+                comp.CustomDescription += "\nHumidity penalty from biome:" + maxCTHumidityPenaltyPerApparelBiome;
+                comp.CustomDescription += "\nHumidity penalty from weather:" + maxCTHumidityPenaltyPerApparelWeather;
+                comp.CustomDescription += "\nPenalty from total apparel weight:" + maxCTPenaltiesTotalApparelsMassKg;
+                comp.CustomDescription += "\nPenalty from each apparel: (<Vanilla value>/<New value>" + finalMaxCT;
+                foreach (var maxCTPenalty in maxCTPenalties) 
+                {
+                    if (maxCTPenalty.Apparel != null)
+                    {
+                        comp.CustomDescription += "\n" + maxCTPenalty.Apparel.def.defName + " : "
+                            + maxCTPenalty.MaxCTDefault.ToString("0.0")
+                             + " / "
+                            + (maxCTPenalty.MaxCTDefault - maxCTPenalty.MaxCTReduction).ToString("0.0")
+                        ;
+                    }
+                }
                 
                 // Dynamic stat to adjust maxCT of pawn
                 var statModifierComp = hediffAdjustedMaxCT.TryGetComp<HediffComp_StatModifier>();
@@ -340,22 +360,22 @@ namespace RAHI.Model
         }
 
         private void CalculateMaxCTPenaltyGenesReduction(Pawn pawn,
-                out float maxCTPenaltiesGenesReductionValue,
-                out float maxCTPenaltiesGenesReductionPercentage
+                out float maxCTBonusFromGenesValue,
+                out float maxCTBonusFromGenesPercentage
             )
         {
             if(UtilsPawn.HasGeneHeatToleranceLarge(pawn))
             {
-                maxCTPenaltiesGenesReductionValue = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceLargeValue;
-                maxCTPenaltiesGenesReductionPercentage = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceLargePercentage;
+                maxCTBonusFromGenesValue = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceLargeValue;
+                maxCTBonusFromGenesPercentage = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceLargePercentage;
             }
             if (UtilsPawn.HasGeneHeatToleranceSmall(pawn))
             {
-                maxCTPenaltiesGenesReductionValue = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceSmallValue;
-                maxCTPenaltiesGenesReductionPercentage = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceSmallPercentage;
+                maxCTBonusFromGenesValue = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceSmallValue;
+                maxCTBonusFromGenesPercentage = RAHIModWindow.Instance.settings.maxCTBonusGeneHeatToleranceSmallPercentage;
             }
-            maxCTPenaltiesGenesReductionValue = 0;
-            maxCTPenaltiesGenesReductionPercentage = 0;
+            maxCTBonusFromGenesValue = 0;
+            maxCTBonusFromGenesPercentage = 0;
         }
 
         private float CalculateMaxCTPenaltyExposedBodyPartReduction(Pawn pawn)
