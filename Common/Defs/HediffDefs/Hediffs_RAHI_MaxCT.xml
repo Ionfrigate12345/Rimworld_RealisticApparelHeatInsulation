@@ -2,17 +2,17 @@
 <Defs>
 	<HediffDef>
 		<defName>RAHI_AdjustedMaxCT</defName>
-		<label>RAHI MaxCT</label>
-		<description><description>
+		<label>RAHI Adjusted MaxCT</label>
+		<description>RAHI has adjusted the maximum comfortable temperature for this pawn.</description>
 		<defaultLabelColor>(0.5, 0.8, 0.8)</defaultLabelColor>
-		<isBad>true</isBad>
+		<isBad>false</isBad>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<comps>
-			<li Class="RAHI.Def.Hediff.HediffComp_DescriptionModifier" />
-			<li Class="RAHI.Def.Hediff.HediffComp_StatModifier" />
+			<li Class="RAHI.Def.Hediff.HediffCompProperties_DescriptionModifier" />
+			<li Class="RAHI.Def.Hediff.HediffCompProperties_StatModifier" />
 		</comps>
-		<hediffClass>CompressedRaid.CR_Powerup1</hediffClass>
-		<stages>
+		<hediffClass>HediffWithComps</hediffClass>
+        <stages>
 			<li>
 				<statOffsets>
 				  <ComfyTemperatureMax>0</ComfyTemperatureMax>

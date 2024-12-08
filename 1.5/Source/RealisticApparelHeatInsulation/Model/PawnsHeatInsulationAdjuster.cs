@@ -27,13 +27,14 @@ namespace RAHI.Model
             base.WorldComponentTick();
 
             var tickCount = Find.TickManager.TicksGame;
-            var checkInteval = GenDate.TicksPerHour / 2;
-            if (tickCount % checkInteval != 321)
+            var checkInteval = GenDate.TicksPerHour / 4;
+            if (tickCount % checkInteval != 123)
                 return;
 
             var playerPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction_NoCryptosleep
                 .Where(p => p.RaceProps.Humanlike).ToList();
 
+            Log.Message("RAHI start with pawn count:" + playerPawns.Count);
             foreach (var pawn in playerPawns)
             {
                 //Check biome
@@ -70,10 +71,12 @@ namespace RAHI.Model
 
                 List<MaxCTPenalty> maxCTPenalties = new List<MaxCTPenalty>();
 
+                Log.Message("RAHI test -3");
                 //Apparel_Duster, Apparel_CowboyHat, Apparel_Shadecone, Apparel_HatHood are considerred as Heat Insulation apparels (HIA)
                 List<Apparel> apparelsHI = UtilsApparel.GetAllHeatInsulationClothingsOnPawn(pawn);
                 List<Apparel> apparelsNonHI = UtilsApparel.GetAllEligibleNonHeatInsulationClothingsOnPawn(pawn);
 
+                Log.Message("RAHI test -2");
                 /** Humidity penalties (stackable) on pawn: 
                     * In wet biomes and weathers, pawns will suffer more maxHC penalty for each clothing piece worn.
                     * Will apply when temperature is above 30 and one of the following condition applies:*/
@@ -83,6 +86,7 @@ namespace RAHI.Model
                     out float humidityPenaltyPerApparelTotal
                     );
 
+                Log.Message("RAHI test -1");
                 /** For all non-HIA:
                 - Instead of increasing max comfortable temperature(MaxCT) by most clothings, it will mostly reduce it instead.
                     The reduction value x is:
@@ -104,14 +108,17 @@ namespace RAHI.Model
                 */
                 maxCTPenalties = CalculateMaxCTPenaltyNonHIA(apparelsHI, maxCTPenalties, humidityPenaltyPerApparelTotal);
 
+                Log.Message("RAHI test 0");
                 /** For all HIA:
                         The HI bonus is applied when there aren't humidity penalties.
                         */
                 maxCTPenalties = CalculateMaxCTPenaltyHIA(apparelsHI, maxCTPenalties, biome, humidityPenaltyPerApparelTotal);
 
+                Log.Message("RAHI test 1");
                 //Get race base MaxCT value.
                 float maxCTRace = pawn.def.GetStatValueAbstract(StatDefOf.ComfyTemperatureMax);
 
+                Log.Message("RAHI test 2");
                 /**
                 - If the sum of the mass of all apparels (including non eligible ones) reach a certain percentage of total carry weight, MaxCT will reduce
                      -20 when >= 80 %,  -15 when >= 70 %, -10 when >= 60 %, -5 when >= 40 %, -2 when >= 20 %
@@ -119,6 +126,7 @@ namespace RAHI.Model
                 */
                 float maxCTPenaltiesTotalApparelsMassKg = CalculateMaxCTPenaltyTotalApparelsWeight(pawn);
 
+                Log.Message("RAHI test 3");
                 /**
                 - Heat tolerance/super-tolerance gene from Biotech can get +5/+10 extra base maxCT besides vanilla bonus
                 - Heat tolerance/super-tolerance gene from Biotech can reduce all MaxCT reductions from this mod by 25%/50%
@@ -128,6 +136,7 @@ namespace RAHI.Model
                     out float maxCTBonusFromGenesercentage
                     );
 
+                Log.Message("RAHI test 4");
                 /** 
                 MaxCT will increase for pawns with some body parts not covered by any apparel:
                 -  +2 bonus for each non covered shoulder,
@@ -140,6 +149,7 @@ namespace RAHI.Model
                 */
                 float maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn);
 
+                Log.Message("RAHI test 5");
                 /**
                 TODO In later versions
                 If temperature > 40 and a pawn is outdoor, exposed body part under luminosity > 51% may randonly get that body part wounded by burnt.
@@ -154,13 +164,16 @@ namespace RAHI.Model
                 float finalMaxCT = maxCTRace - maxCTPenaltiesTotal + maxCTBonusFromGenesValue + maxCTBonusFromExposedBodyPart;
                 finalMaxCT = Math.Max(finalMaxCT, 21);
 
+                Log.Message("RAHI test 6");
                 /**Apply new maxCT to pawn hediff */
                 var hediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x => x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName).FirstOrDefault();
-                if(hediffAdjustedMaxCT != null)
+                if(hediffAdjustedMaxCT == null)
                 {
                     hediffAdjustedMaxCT = HediffMaker.MakeHediff(RAHIDefOf.RAHI_AdjustedMaxCT, pawn);
                     pawn.health.AddHediff(hediffAdjustedMaxCT);
                 }
+                Log.Message("RAHI hediff:" + hediffAdjustedMaxCT.def.defName);
+                Log.Message("RAHI finalMaxCT:" + finalMaxCT);
 
                 //Dynamic description
                 var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
