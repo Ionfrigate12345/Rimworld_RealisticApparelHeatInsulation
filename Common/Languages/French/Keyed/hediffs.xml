@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <RAHI_Hediff_Description>
+		\nVanilla: {0}C. Adjusted: {1}C
+		\n\n
+		\nDetails:
+		\nBase race MaxCT: {2}
+		\nPenalty reduction from genes: {3}%
+		\nBonus from genes: {4}
+		\nBonus from exposed body parts: {5}
+		\nHumidity penalty from biome: {6}
+		\nHumidity penalty from weather: {7}
+		\nPenalty from total apparel weight: {8}
+		\nPenalty from apparels: {9}
+	</RAHI_Hediff_Description>
+	
+	<RAHI_Setting_ModName>RAHI (Realistic Apparel Heat Insulation)</RAHI_Setting_ModName>
+	<RAHI_Setting_MaxCTReductionPerVanillaBonus>For non heat insulation apparels, instead of MaxCT increase, will decrease this percentage of vanilla bonus</RAHI_Setting_MaxCTReductionPerVanillaBonus>
+	<RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>For heat insulation apparels, instead of MaxCT increase, will decrease this percentage of vanilla bonus with humidity penalty</RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>
+	<RAHI_Setting_MaxCTReductionPerMassKgBetween5And10>MaxCT penalty per extra KG after overall apparel weight goes beyond 5KG (but below 10KG)</RAHI_Setting_MaxCTReductionPerMassKgBetween5And10>
+	<RAHI_Setting_MaxCTReductionPerMassKgAbove10>MaxCT penalty per extra KG after overall apparel weight goes beyond 10KG</RAHI_Setting_MaxCTReductionPerMassKgAbove10>
+	
+	<RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalRainforest>Each piece of apparel increase humidity penalty of MaxCT of this value in Tropical Rain Forest</RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalRainforest>
+	<RAHI_Setting_HumidityPenaltyPerApparelBiomeTemperateSwamp>Each piece of apparel increase humidity penalty of MaxCT of this value in Temperate Swamp</RAHI_Setting_HumidityPenaltyPerApparelBiomeTemperateSwamp>
+	<RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalSwamp>Each piece of apparel increase humidity penalty of MaxCT of this value in Tropical Swamp</RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalSwamp>
+	<RAHI_Setting_HumidityPenaltyPerApparelBiomeWetWeather>Each piece of apparel increase humidity penalty of MaxCT of this value in wet weather (rain, fog, etc.)</RAHI_Setting_HumidityPenaltyPerApparelBiomeWetWeather>
+	
+	<RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallValue>(Require Biotech DLC) Small Heat Tolerance gene increases this value of MaxCT besides vanilla bonus</RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallValue>
+	<RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallPercentage>(Require Biotech DLC) Small Heat Tolerance gene gives this percentage of all MaxCT penalty reduction</RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallPercentage>
+	<RAHI_Setting_MaxCTBonusGeneHeatToleranceLargeValue>(Require Biotech DLC) Large Heat Tolerance gene increases this value of MaxCT besides vanilla bonus</RAHI_Setting_MaxCTBonusGeneHeatToleranceLargeValue>
+	<RAHI_Setting_MaxCTBonusGeneHeatToleranceLargePercentage>(Require Biotech DLC) Large Heat Tolerance gene gives this percentage of all MaxCT penalty reduction</RAHI_Setting_MaxCTBonusGeneHeatToleranceLargePercentage>
+	
+	<RAHI_Setting_MaxCTBonusExposedShoulders>MaxCT increases this value when shoulders are not covered by any apparel</RAHI_Setting_MaxCTBonusExposedShoulders>
+	<RAHI_Setting_MaxCTBonusExposedArms>MaxCT increases this value when arms are not covered by any apparel</RAHI_Setting_MaxCTBonusExposedArms>
+	<RAHI_Setting_MaxCTBonusExposedLegs>MaxCT increases this value when legs are not covered by any apparel</RAHI_Setting_MaxCTBonusExposedLegs>
+	<RAHI_Setting_MaxCTBonusExposedTorso>MaxCT increases this value when torso is not covered by any apparel</RAHI_Setting_MaxCTBonusExposedTorso>
+	<RAHI_Setting_MaxCTBonusExposedNeck>MaxCT increases this value when neck is not covered by any apparel</RAHI_Setting_MaxCTBonusExposedNeck>
+	<RAHI_Setting_MaxCTBonusExposedMaxTotal>Total MaxCT increased by body part exposure cannot exceed this value</RAHI_Setting_MaxCTBonusExposedMaxTotal>
+	
+</LanguageData>

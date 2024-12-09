@@ -77,7 +77,7 @@ namespace RAHI.View
 
         public override string SettingsCategory()
         {
-            return "_Setting_ModName".Translate();
+            return "RAHI_Setting_ModName".Translate();
         }
     }
 }

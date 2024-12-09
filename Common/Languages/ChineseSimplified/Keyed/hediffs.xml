@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <RAHI_Hediff_Description>
+        \n原版: {0}C。调整后: {1}C\n详情:\n基础种族抗热上限: {2}\n基因减罚: {3}%\n基因奖励: {4}\n裸露身体部位加成: {5}\n气候湿度惩罚: {6}\n天气湿度惩罚: {7}\n衣服总重量惩罚: {8}\n衣服惩罚: {9}
+    </RAHI_Hediff_Description>
+    
+    <RAHI_Setting_ModName>RAHI (真实抗热上限)</RAHI_Setting_ModName>
+    <RAHI_Setting_MaxCTReductionPerVanillaBonus>对于非隔热衣服，每件减少抗热上限而不是增加，数额为该百分比的原版奖励</RAHI_Setting_MaxCTReductionPerVanillaBonus>
+    <RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>对于隔热衣服（如防尘衣），在承受任何湿度惩罚时每件减少抗热上限而不是增加，数额为该百分比的原版奖励</RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>
+    <RAHI_Setting_MaxCTReductionPerMassKgBetween5And10>总衣服重量超过5KG（但低于10KG）后，每增加1KG会减少该数额的抗热上限</RAHI_Setting_MaxCTReductionPerMassKgBetween5And10>
+    <RAHI_Setting_MaxCTReductionPerMassKgAbove10>总衣服重量超过10KG后，每增加1KG会减少该数额的抗热上限</RAHI_Setting_MaxCTReductionPerMassKgAbove10>
+    
+    <RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalRainforest>在热带雨林中，每件服装会给抗热上限带来该湿度惩罚</RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalRainforest>
+    <RAHI_Setting_HumidityPenaltyPerApparelBiomeTemperateSwamp>在温带沼泽中，每件服装会给抗热上限带来该湿度惩罚</RAHI_Setting_HumidityPenaltyPerApparelBiomeTemperateSwamp>
+    <RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalSwamp>在热带沼泽中，每件服装会给抗热上限带来该湿度惩罚</RAHI_Setting_HumidityPenaltyPerApparelBiomeTropicalSwamp>
+    <RAHI_Setting_HumidityPenaltyPerApparelBiomeWetWeather>在潮湿天气时（雨、雾等），每件服装会给抗热上限带来该湿度惩罚</RAHI_Setting_HumidityPenaltyPerApparelBiomeWetWeather>
+    
+    <RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallValue>(需要生物DLC)耐热基因除了原版奖励外，额外增加此数额的抗热上限</RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallValue>
+    <RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallPercentage>(需要生物DLC)耐热基因减少所有来自本模组的抗热惩罚，数额为该百分比</RAHI_Setting_MaxCTBonusGeneHeatToleranceSmallPercentage>
+    <RAHI_Setting_MaxCTBonusGeneHeatToleranceLargeValue>(需要生物DLC)超级耐热基因除了原版奖励外，额外增加此数额的抗热上限</RAHI_Setting_MaxCTBonusGeneHeatToleranceLargeValue>
+    <RAHI_Setting_MaxCTBonusGeneHeatToleranceLargePercentage>(需要生物DLC)耐热基因减少所有来自本模组的抗热惩罚，数额为该百分比</RAHI_Setting_MaxCTBonusGeneHeatToleranceLargePercentage>
+    
+    <RAHI_Setting_MaxCTBonusExposedShoulders>当肩膀没有被任何衣物覆盖时，增加此数额的抗热上限</RAHI_Setting_MaxCTBonusExposedShoulders>
+    <RAHI_Setting_MaxCTBonusExposedArms>当手臂没有被任何衣物覆盖时，增加此数额的抗热上限</RAHI_Setting_MaxCTBonusExposedArms>
+    <RAHI_Setting_MaxCTBonusExposedLegs>当腿部没有被任何衣物覆盖时，增加此数额的抗热上限</RAHI_Setting_MaxCTBonusExposedLegs>
+    <RAHI_Setting_MaxCTBonusExposedTorso>当躯干没有被任何衣物覆盖时，增加此数额的抗热上限</RAHI_Setting_MaxCTBonusExposedTorso>
+    <RAHI_Setting_MaxCTBonusExposedNeck>当脖子没有被任何衣物覆盖时，增加此数额的抗热上限</RAHI_Setting_MaxCTBonusExposedNeck>
+    <RAHI_Setting_MaxCTBonusExposedMaxTotal>裸露身体部位的抗热上限奖励不能超过该数额</RAHI_Setting_MaxCTBonusExposedMaxTotal>
+</LanguageData>

@@ -174,32 +174,32 @@ namespace RAHI.Model
                 hediffAdjustedMaxCT.Severity = Math.Abs(finalMaxCTModifier) * 0.01f + (finalMaxCTModifier < 0 ? 1.0f : 0);
 
                 //Dynamic description
-                var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
-                comp.CustomDescription = String.Format("Vanilla: {0}C. Adjusted: {1}C",
-                    (int)Math.Round(vanillaMaxCTRaceActual), (int)Math.Round(finalMaxCT));
-
-                comp.CustomDescription += "\n";
-                comp.CustomDescription += "\nDetails:";
-                //Show details for each piece of apparel if mod config is active.
-                comp.CustomDescription += "\nBase race MaxCT:" + maxCTRace;
-                comp.CustomDescription += "\nPenalty reduction from genes:" + (maxCTBonusFromGenePercentage * 100) + "%";
-                comp.CustomDescription += "\nBonus from genes:" + maxCTBonusFromGenesValue;
-                comp.CustomDescription += "\nBonus from exposed body parts:" + maxCTBonusFromExposedBodyPart;
-                comp.CustomDescription += "\nHumidity penalty from biome:" + maxCTHumidityPenaltyPerApparelBiome;
-                comp.CustomDescription += "\nHumidity penalty from weather:" + maxCTHumidityPenaltyPerApparelWeather;
-                comp.CustomDescription += "\nPenalty from total apparel weight:" + maxCTPenaltiesTotalApparelsMassKg;
-                comp.CustomDescription += "\nPenalty from apparels: ";
-                foreach (var maxCTPenalty in maxCTPenalties) 
+                string descDetailApparels = "";
+                foreach (var maxCTPenalty in maxCTPenalties)
                 {
                     if (maxCTPenalty.Apparel != null)
                     {
-                        comp.CustomDescription += "\n" + maxCTPenalty.Apparel.def.defName + " : "
+                        descDetailApparels += "\n" + maxCTPenalty.Apparel.Label + " : "
                             + maxCTPenalty.MaxCTDefault.ToString("0.0")
                             + " / "
                             + (maxCTPenalty.MaxCTDefault - maxCTPenalty.MaxCTReduction).ToString("0.0")
                         ;
                     }
                 }
+                var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
+                comp.CustomDescription = new TaggedString("RAHI_Hediff_Description".Translate(
+                        (int)Math.Round(vanillaMaxCTRaceActual), 
+                        (int)Math.Round(finalMaxCT),
+                        maxCTRace,
+                        (maxCTBonusFromGenePercentage * 100),
+                        maxCTBonusFromGenesValue,
+                        maxCTBonusFromExposedBodyPart,
+                        maxCTHumidityPenaltyPerApparelBiome,
+                        maxCTHumidityPenaltyPerApparelWeather,
+                        maxCTPenaltiesTotalApparelsMassKg,
+                        descDetailApparels
+                    )
+                );
             }
         }
 
