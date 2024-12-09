@@ -114,7 +114,7 @@ namespace RAHI.Model
                 /**
                 - If the sum of the mass of all apparels (including non eligible ones) reach a certain percentage of total carry weight, MaxCT will reduce
                      -20 when >= 80 %,  -15 when >= 70 %, -10 when >= 60 %, -5 when >= 40 %, -2 when >= 20 %
-                - "Robust" gene from Biotech can reduce this penalty by -25%
+                - TODO: "Robust" gene from Biotech can reduce this penalty by -25%
                 */
                 float maxCTPenaltiesTotalApparelsMassKg = CalculateMaxCTPenaltyTotalApparelsWeight(pawn);
 
