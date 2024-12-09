@@ -7,19 +7,19 @@
       "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:model\\pawnsheatinsulationadjuster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|d:\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\1.5\\source\\realisticapparelheatinsulation\\global\\utilsapparel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:global\\utilsapparel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\global\\utilspawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:global\\utilspawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\global\\utilsapparel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:global\\utilsapparel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\def\\hediff\\hediffcomp_statmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:def\\hediff\\hediffcomp_statmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|d:\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\1.5\\source\\realisticapparelheatinsulation\\def\\hediff\\hediffcomp_descriptionmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\def\\hediff\\hediffcomp_descriptionmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:def\\hediff\\hediffcomp_descriptionmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -46,12 +46,11 @@
               "RelativeToolTip": "Def\\Hediff\\HediffComp_DescriptionModifier.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAADwvwsAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T23:43:12.9Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-08T23:43:12.9Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UtilsApparel.cs",
               "DocumentMoniker": "D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsApparel.cs",
               "RelativeDocumentMoniker": "Global\\UtilsApparel.cs",
@@ -59,18 +58,17 @@
               "RelativeToolTip": "Global\\UtilsApparel.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T20:13:15.99Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-08T20:13:15.99Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "UtilsPawn.cs",
               "DocumentMoniker": "D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsPawn.cs",
               "RelativeDocumentMoniker": "Global\\UtilsPawn.cs",
               "ToolTip": "D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsPawn.cs",
               "RelativeToolTip": "Global\\UtilsPawn.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAawBcAAAA/AAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAIA1wBcAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-30T02:19:25.33Z",
               "EditorCaption": ""
@@ -83,7 +81,7 @@
               "RelativeDocumentMoniker": "Model\\PawnsHeatInsulationAdjuster.cs",
               "ToolTip": "D:\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\1.5\\Source\\RealisticApparelHeatInsulation\\Model\\PawnsHeatInsulationAdjuster.cs",
               "RelativeToolTip": "Model\\PawnsHeatInsulationAdjuster.cs",
-              "ViewState": "AQIAAJAAAAAAAAAAAAAhwKsAAABHAAAA",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAiwLIAAABaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-29T15:53:12.03Z",
               "EditorCaption": ""
@@ -98,8 +96,7 @@
               "RelativeToolTip": "Def\\Hediff\\HediffComp_StatModifier.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAAIwBcAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T22:20:26.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T22:20:26.281Z"
             }
           ]
         }

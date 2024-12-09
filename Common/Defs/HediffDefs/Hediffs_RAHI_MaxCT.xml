@@ -21,210 +21,210 @@
 				</statOffsets>
 			</li>
 			<li>
-				<label>1C</label>
+				<label>+1C</label>
 				<minSeverity>0.01</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>1</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>2C</label>
+				<label>+2C</label>
 				<minSeverity>0.02</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>2</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>3C</label>
+				<label>+3C</label>
 				<minSeverity>0.03</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>3</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>4C</label>
+				<label>+4C</label>
 				<minSeverity>0.04</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>4</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>5C</label>
+				<label>+5C</label>
 				<minSeverity>0.05</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>5</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>6C</label>
+				<label>+6C</label>
 				<minSeverity>0.06</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>6</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>7C</label>
+				<label>+7C</label>
 				<minSeverity>0.07</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>7</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>8C</label>
+				<label>+8C</label>
 				<minSeverity>0.08</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>8</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>9C</label>
+				<label>+9C</label>
 				<minSeverity>0.09</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>9</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>10C</label>
+				<label>+10C</label>
 				<minSeverity>0.1</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>10</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>11C</label>
+				<label>+11C</label>
 				<minSeverity>0.11</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>11</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>12C</label>
+				<label>+12C</label>
 				<minSeverity>0.12</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>12</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>13C</label>
+				<label>+13C</label>
 				<minSeverity>0.13</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>13</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>14C</label>
+				<label>+14C</label>
 				<minSeverity>0.14</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>14</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>15C</label>
+				<label>+15C</label>
 				<minSeverity>0.15</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>15</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>16C</label>
+				<label>+16C</label>
 				<minSeverity>0.16</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>16</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>17C</label>
+				<label>+17C</label>
 				<minSeverity>0.17</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>17</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>18C</label>
+				<label>+18C</label>
 				<minSeverity>0.18</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>18</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>19C</label>
+				<label>+19C</label>
 				<minSeverity>0.19</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>19</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>20C</label>
+				<label>+20C</label>
 				<minSeverity>0.2</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>20</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>21C</label>
+				<label>+21C</label>
 				<minSeverity>0.21</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>21</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>22C</label>
+				<label>+22C</label>
 				<minSeverity>0.22</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>22</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>23C</label>
+				<label>+23C</label>
 				<minSeverity>0.23</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>23</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>24C</label>
+				<label>+24C</label>
 				<minSeverity>0.24</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>24</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>25C</label>
+				<label>+25C</label>
 				<minSeverity>0.25</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>25</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>26C</label>
+				<label>+26C</label>
 				<minSeverity>0.26</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>26</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>27C</label>
+				<label>+27C</label>
 				<minSeverity>0.27</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>27</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>28C</label>
+				<label>+28C</label>
 				<minSeverity>0.28</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>28</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>29C</label>
+				<label>+29C</label>
 				<minSeverity>0.29</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>29</ComfyTemperatureMax>
 				</statOffsets>
 			</li>
 			<li>
-				<label>30C</label>
+				<label>+30C</label>
 				<minSeverity>0.3</minSeverity>
 				<statOffsets>
 					<ComfyTemperatureMax>30</ComfyTemperatureMax>
