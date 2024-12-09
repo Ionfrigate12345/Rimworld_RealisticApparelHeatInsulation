@@ -10,7 +10,7 @@ namespace RealisticApparelHeatInsulation.Global
 {
     internal class UtilsApparel
     {
-        private static HashSet<string> validApparelDefNames = new HashSet<string>
+        private static HashSet<string> validIHApparelDefNames = new HashSet<string>
         {
             "Apparel_Duster",
             "Apparel_CowboyHat",
@@ -33,55 +33,36 @@ namespace RealisticApparelHeatInsulation.Global
         }
         public static float GetApparelDefaultMaxComfortableTemperatureBonus(Apparel apparel)
         {
-            var statModifierIH = apparel.def.statBases.Find(statModifier => statModifier.stat.defName == StatDefOf.Insulation_Heat.defName);
-
-            if(statModifierIH == null)
-            {
-                Log.Warning("Apparel " + apparel.def.defName + " Doesnt have stat Insulation_Heat.");
-                return 0;
-            }
-            else
-            {
-                Log.Message("Apparel " + apparel.def.defName + "Insulation_Heat stat:" + statModifierIH.value);
-            }
-            return statModifierIH.value;
+            var valueIH = apparel.GetStatValue(StatDefOf.Insulation_Heat);
+            Log.Message("Apparel " + apparel.def.defName + " Insulation_Heat stat:" + valueIH);
+            return valueIH;
         }
 
         public static float GetApparelDefaultMinComfortableTemperatureBonus(Apparel apparel)
         {
-            var statModifierIC = apparel.def.statBases.Find(statModifier => statModifier.stat.defName == StatDefOf.Insulation_Cold.defName);
-
-            if (statModifierIC == null)
-            {
-                Log.Warning("Apparel " + apparel.def.defName + " Doesnt have stat Insulation_Cold.");
-                return 0;
-            }
-            else
-            {
-                Log.Message("Apparel " + apparel.def.defName + "Insulation_Cold stat:" + statModifierIC.value);
-            }
-            return statModifierIC.value;
+            var valueIC = apparel.GetStatValue(StatDefOf.Insulation_Cold);
+            Log.Message("Apparel " + apparel.def.defName + " Insulation_Cold stat:" + valueIC);
+            return valueIC;
         }
 
         public static float GetApparelMassKg(Apparel apparel)
         {
-            var statModifierIH = apparel.def.statBases.Find(statModifier => statModifier.stat.defName == StatDefOf.Mass.defName);
-            return statModifierIH.value;
+            return apparel.GetStatValue(StatDefOf.Mass);
         }
 
         public static List<Apparel> GetAllHeatInsulationClothingsOnPawn(Pawn pawn)
         {
-            var apparels = pawn.apparel.WornApparel;
-            return apparels.Where(apparel => validApparelDefNames.Contains(apparel.def.defName)).ToList();
+            var apparels = pawn.apparel.WornApparel.Where(apparel => validIHApparelDefNames.Contains(apparel.def.defName)).ToList();
+            return apparels;
         }
 
         public static List<Apparel> GetAllEligibleNonHeatInsulationClothingsOnPawn(Pawn pawn)
         {
-            var apparels = pawn.apparel.WornApparel;
-            return apparels.Where(apparel => !validApparelDefNames.Contains(apparel.def.defName) 
+            var apparels = pawn.apparel.WornApparel.Where(apparel => !validIHApparelDefNames.Contains(apparel.def.defName)
                 && apparel.def.defName != "Apparel_ArmorCataphractPhoenix" //Phoenix Armor excluded
                 && !HasSOS2DecompressionResistanceStat(apparel) //Apparels with SOS2 EVA property excluded
                 ).ToList();
+            return apparels;
         }
     }
 }

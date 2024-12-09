@@ -27,14 +27,13 @@ namespace RAHI.Model
             base.WorldComponentTick();
 
             var tickCount = Find.TickManager.TicksGame;
-            var checkInteval = GenDate.TicksPerHour / 4;
+            var checkInteval = GenDate.TicksPerHour / 2;
             if (tickCount % checkInteval != 123)
                 return;
 
             var playerPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction_NoCryptosleep
                 .Where(p => p.RaceProps.Humanlike).ToList();
 
-            Log.Message("RAHI start with pawn count:" + playerPawns.Count);
             foreach (var pawn in playerPawns)
             {
                 //Check biome
@@ -61,7 +60,9 @@ namespace RAHI.Model
                 {
                     //No script needed if ambient temperature isn't high enough.
                     //Pawn RAHI hediff removed
-                    var pawnHediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x => x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName).FirstOrDefault();
+                    var pawnHediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x =>
+                        x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName
+                    ).FirstOrDefault();
                     if(pawnHediffAdjustedMaxCT != null)
                     {
                         pawn.health.RemoveHediff(pawnHediffAdjustedMaxCT);
@@ -69,14 +70,10 @@ namespace RAHI.Model
                     continue;
                 }
 
-                List<MaxCTPenalty> maxCTPenalties = new List<MaxCTPenalty>();
-
-                Log.Message("RAHI test -3");
                 //Apparel_Duster, Apparel_CowboyHat, Apparel_Shadecone, Apparel_HatHood are considerred as Heat Insulation apparels (HIA)
                 List<Apparel> apparelsHI = UtilsApparel.GetAllHeatInsulationClothingsOnPawn(pawn);
                 List<Apparel> apparelsNonHI = UtilsApparel.GetAllEligibleNonHeatInsulationClothingsOnPawn(pawn);
 
-                Log.Message("RAHI test -2");
                 /** Humidity penalties (stackable) on pawn: 
                     * In wet biomes and weathers, pawns will suffer more maxHC penalty for each clothing piece worn.
                     * Will apply when temperature is above 30 and one of the following condition applies:*/
@@ -86,7 +83,6 @@ namespace RAHI.Model
                     out float humidityPenaltyPerApparelTotal
                     );
 
-                Log.Message("RAHI test -1");
                 /** For all non-HIA:
                 - Instead of increasing max comfortable temperature(MaxCT) by most clothings, it will mostly reduce it instead.
                     The reduction value x is:
@@ -106,19 +102,15 @@ namespace RAHI.Model
                         Eccentric Tech - Angel Apparel Ancient Mech Armor (only those with EVA compatibility)
                         Ancient Mech Armors
                 */
-                maxCTPenalties = CalculateMaxCTPenaltyNonHIA(apparelsHI, maxCTPenalties, humidityPenaltyPerApparelTotal);
 
-                Log.Message("RAHI test 0");
-                /** For all HIA:
-                        The HI bonus is applied when there aren't humidity penalties.
-                        */
-                maxCTPenalties = CalculateMaxCTPenaltyHIA(apparelsHI, maxCTPenalties, biome, humidityPenaltyPerApparelTotal);
+                List<MaxCTPenalty> maxCTPenaltiesNonHIA = CalculateMaxCTPenaltyNonHIA(apparelsNonHI, humidityPenaltyPerApparelTotal);
+                List<MaxCTPenalty> maxCTPenaltiesHIA = CalculateMaxCTPenaltyHIA(apparelsHI, biome, humidityPenaltyPerApparelTotal);
+                List<MaxCTPenalty> maxCTPenalties = maxCTPenaltiesNonHIA.Concat(maxCTPenaltiesHIA).ToList();
+                Log.Warning("RAHI max ct penalties count after HIA:" + maxCTPenalties.Count);
 
-                Log.Message("RAHI test 1");
                 //Get race base MaxCT value.
                 float maxCTRace = pawn.def.GetStatValueAbstract(StatDefOf.ComfyTemperatureMax);
 
-                Log.Message("RAHI test 2");
                 /**
                 - If the sum of the mass of all apparels (including non eligible ones) reach a certain percentage of total carry weight, MaxCT will reduce
                      -20 when >= 80 %,  -15 when >= 70 %, -10 when >= 60 %, -5 when >= 40 %, -2 when >= 20 %
@@ -126,7 +118,6 @@ namespace RAHI.Model
                 */
                 float maxCTPenaltiesTotalApparelsMassKg = CalculateMaxCTPenaltyTotalApparelsWeight(pawn);
 
-                Log.Message("RAHI test 3");
                 /**
                 - Heat tolerance/super-tolerance gene from Biotech can get +5/+10 extra base maxCT besides vanilla bonus
                 - Heat tolerance/super-tolerance gene from Biotech can reduce all MaxCT reductions from this mod by 25%/50%
@@ -136,7 +127,6 @@ namespace RAHI.Model
                     out float maxCTBonusFromGenesercentage
                     );
 
-                Log.Message("RAHI test 4");
                 /** 
                 MaxCT will increase for pawns with some body parts not covered by any apparel:
                 -  +2 bonus for each non covered shoulder,
@@ -149,7 +139,6 @@ namespace RAHI.Model
                 */
                 float maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn);
 
-                Log.Message("RAHI test 5");
                 /**
                 TODO In later versions
                 If temperature > 40 and a pawn is outdoor, exposed body part under luminosity > 51% may randonly get that body part wounded by burnt.
@@ -162,63 +151,54 @@ namespace RAHI.Model
                 float maxCTPenaltiesApparelsTotal = CalculateMaxCTPenaltiesApparelTotal(maxCTPenalties);
                 float maxCTPenaltiesTotal = (maxCTPenaltiesApparelsTotal + maxCTPenaltiesTotalApparelsMassKg) * (1 - maxCTBonusFromGenesercentage);
                 float finalMaxCT = maxCTRace - maxCTPenaltiesTotal + maxCTBonusFromGenesValue + maxCTBonusFromExposedBodyPart;
-                finalMaxCT = Math.Max(finalMaxCT, 21);
+                finalMaxCT = Math.Max(finalMaxCT, 21.0f);
 
-                Log.Message("RAHI test 6");
                 /**Apply new maxCT to pawn hediff */
-                var hediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x => x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName).FirstOrDefault();
+                var hediffAdjustedMaxCT = pawn.health.hediffSet.hediffs.Where(x =>
+                    x.def.defName == RAHIDefOf.RAHI_AdjustedMaxCT.defName
+                ).FirstOrDefault();
                 if(hediffAdjustedMaxCT == null)
                 {
                     hediffAdjustedMaxCT = HediffMaker.MakeHediff(RAHIDefOf.RAHI_AdjustedMaxCT, pawn);
                     pawn.health.AddHediff(hediffAdjustedMaxCT);
                 }
-                Log.Message("RAHI hediff:" + hediffAdjustedMaxCT.def.defName);
-                Log.Message("RAHI finalMaxCT:" + finalMaxCT);
+
+                hediffAdjustedMaxCT.Severity = 0;
+                float vanillaMaxCTRaceActual = pawn.GetStatValue(StatDefOf.ComfyTemperatureMax);
+                int finalMaxCTModifier = (int)(finalMaxCT - vanillaMaxCTRaceActual);
+                //Use minSeverity tag as stage selector
+                //Positive modifiers use severity 0.xx, while negative 1.xx
+                //The modifier is between -30C and 30C
+                finalMaxCTModifier = Math.Max(finalMaxCTModifier, -30);
+                finalMaxCTModifier = Math.Min(finalMaxCTModifier, 30);
+                hediffAdjustedMaxCT.Severity = Math.Abs(finalMaxCTModifier) * 0.01f + (finalMaxCTModifier < 0 ? 1.0f : 0);
 
                 //Dynamic description
                 var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
-                comp.CustomDescription = "RAHI has adjusted the maximum comfortable temperature for this pawn. New value: " + finalMaxCT;
+                comp.CustomDescription = String.Format("RAHI has adjusted the maximum comfortable temperature (MaxCT) for this pawn: {0}C. (Vanilla: {1}C).",
+                    (int)finalMaxCT, (int)vanillaMaxCTRaceActual);
 
                 comp.CustomDescription += "\n";
                 comp.CustomDescription += "\nDetails:";
                 //Show details for each piece of apparel if mod config is active.
-                comp.CustomDescription += "\nRace vanilla:" + maxCTRace;
-                comp.CustomDescription += "\nGene penalty reduction:" + maxCTBonusFromGenesercentage + "%";
-                comp.CustomDescription += "\nGene bonus:" + maxCTBonusFromGenesValue;
-                comp.CustomDescription += "\nExposed body parts:" + maxCTBonusFromExposedBodyPart;
+                comp.CustomDescription += "\nBase race MaxCT:" + maxCTRace;
+                comp.CustomDescription += "\nPenalty reduction from genes:" + maxCTBonusFromGenesercentage + "%";
+                comp.CustomDescription += "\nBonus from genes:" + maxCTBonusFromGenesValue;
+                comp.CustomDescription += "\nBonus from exposed body parts:" + maxCTBonusFromExposedBodyPart;
                 comp.CustomDescription += "\nHumidity penalty from biome:" + maxCTHumidityPenaltyPerApparelBiome;
                 comp.CustomDescription += "\nHumidity penalty from weather:" + maxCTHumidityPenaltyPerApparelWeather;
                 comp.CustomDescription += "\nPenalty from total apparel weight:" + maxCTPenaltiesTotalApparelsMassKg;
-                comp.CustomDescription += "\nPenalty from each apparel: (<Vanilla value>/<New value>" + finalMaxCT;
+                comp.CustomDescription += "\nPenalty from apparels: ";
                 foreach (var maxCTPenalty in maxCTPenalties) 
                 {
                     if (maxCTPenalty.Apparel != null)
                     {
                         comp.CustomDescription += "\n" + maxCTPenalty.Apparel.def.defName + " : "
                             + maxCTPenalty.MaxCTDefault.ToString("0.0")
-                             + " / "
+                            + " / "
                             + (maxCTPenalty.MaxCTDefault - maxCTPenalty.MaxCTReduction).ToString("0.0")
                         ;
                     }
-                }
-                
-                // Dynamic stat to adjust maxCT of pawn
-                var statModifierComp = hediffAdjustedMaxCT.TryGetComp<HediffComp_StatModifier>();
-                var comfyTempMaxModifier = statModifierComp.Props.statOffsets.FirstOrDefault(
-                    modifier => modifier.stat == StatDefOf.ComfyTemperatureMax
-                );
-
-                if (comfyTempMaxModifier != null)
-                {
-                    comfyTempMaxModifier.value = finalMaxCT;
-                }
-                else
-                {
-                    statModifierComp.Props.statOffsets.Add(new StatModifier
-                    {
-                        stat = StatDefOf.ComfyTemperatureMax,
-                        value = finalMaxCT
-                    });
                 }
             }
         }
@@ -263,15 +243,15 @@ namespace RAHI.Model
         }
 
         private List<MaxCTPenalty> CalculateMaxCTPenaltyNonHIA(List<Apparel> apparelsNonHI,
-            List<MaxCTPenalty> maxCTPenalties,
             float humidityPenaltyPerApparelTotal
             )
         {
+            List<MaxCTPenalty> maxCTPenalties = new List<MaxCTPenalty>();
             foreach (var apparel in apparelsNonHI)
             {
-                float maxCTReduction = 0;
-
                 float defaultMaxCTBonus = UtilsApparel.GetApparelDefaultMaxComfortableTemperatureBonus(apparel);
+                float maxCTReduction = defaultMaxCTBonus;
+
                 if (!UtilsApparel.IsBaseClothingWithoutPenalty(apparel))
                 {
                     float defaultMinCTBonus = UtilsApparel.GetApparelDefaultMinComfortableTemperatureBonus(apparel);
@@ -297,11 +277,11 @@ namespace RAHI.Model
         }
 
         private List<MaxCTPenalty> CalculateMaxCTPenaltyHIA(List<Apparel> apparelsHI,
-            List<MaxCTPenalty> maxCTPenalties,
             BiomeDef biome, 
             float humidityPenaltyPerApparelTotal
             )
         {
+            List<MaxCTPenalty> maxCTPenalties = new List<MaxCTPenalty>();
             foreach (var apparel in apparelsHI)
             {
                 float maxCTReduction = 0;

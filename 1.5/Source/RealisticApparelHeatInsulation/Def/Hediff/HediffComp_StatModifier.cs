@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using RimWorld;
 using Verse;
 
@@ -15,17 +17,11 @@ namespace RAHI.Def.Hediff
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
-            if (Pawn != null)
-            {
-                Pawn.GetStatValue(StatDefOf.ComfyTemperatureMax, true);
-            }
         }
     }
 
     public class HediffCompProperties_StatModifier : HediffCompProperties
     {
-        public List<StatModifier> statOffsets = new List<StatModifier>();
-
         public HediffCompProperties_StatModifier()
         {
             compClass = typeof(HediffComp_StatModifier);

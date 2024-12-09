@@ -10,7 +10,6 @@ namespace RAHI.Def.Hediff
     public class HediffComp_DescriptionModifier : HediffComp
     {
         public string CustomDescription { get; set; }
-
         public override string CompTipStringExtra
         {
             get

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using RimWorld;
-using RAHI;
 using Verse;
 using RAHI.Def;
 
@@ -14,20 +9,8 @@ namespace RealisticApparelHeatInsulation.Global
     {
         public static float GetPawnCarryingCapacity(Pawn pawn)
         {
-            if (pawn.def.statBases == null)
-            {
-                Log.Warning("RAHI: Pawn " + pawn.Name + " doesnt have valid statBases! Using default value 35.");
-                return 35;
-            }
-            var statModifierCC = pawn.def.statBases.Find(statModifier => statModifier.stat.defName == StatDefOf.CarryingCapacity.defName);
-            if (statModifierCC == null)
-            {
-                Log.Warning("RAHI: Pawn " + pawn.Name + " does not have CarryingCapacity stat!  Using default value 35.");
-                return 35;
-            }
-
-            Log.Message("RAHI: Pawn " + pawn.Name + " carrying capacity:" + statModifierCC.value);
-            return statModifierCC.value;
+            var valueCC = pawn.GetStatValue(StatDefOf.CarryingCapacity);
+            return valueCC;
         }
 
         public static bool HasGeneHeatToleranceSmall(Pawn pawn)
