@@ -22,6 +22,7 @@ namespace RealisticApparelHeatInsulation.Global
         {
             return apparel.def.comps.Any(comp => comp.compClass?.FullName == "SaveOurShip2.CompEVA");
         }
+
         public static bool IsBaseClothingWithoutPenalty(Apparel apparel)
         {
             return apparel.def.defName == "Apparel_BasicShirt"
@@ -29,19 +30,22 @@ namespace RealisticApparelHeatInsulation.Global
                 || apparel.def.defName == "Apparel_Corset"
                 || apparel.def.defName == "Apparel_Tribal"
                 || apparel.def.defName == "Apparel_KidTribal"
+                //Vanilla Apparels Expanded 
+                || apparel.def.defName == "VAE_Apparel_CasualTShirt"
+                || apparel.def.defName == "VAE_Apparel_Shorts"
+                || apparel.def.defName == "VAE_Apparel_Skirt"
                 ;
         }
+
         public static float GetApparelDefaultMaxComfortableTemperatureBonus(Apparel apparel)
         {
             var valueIH = apparel.GetStatValue(StatDefOf.Insulation_Heat);
-            Log.Message("Apparel " + apparel.def.defName + " Insulation_Heat stat:" + valueIH);
             return valueIH;
         }
 
         public static float GetApparelDefaultMinComfortableTemperatureBonus(Apparel apparel)
         {
             var valueIC = apparel.GetStatValue(StatDefOf.Insulation_Cold);
-            Log.Message("Apparel " + apparel.def.defName + " Insulation_Cold stat:" + valueIC);
             return valueIC;
         }
 

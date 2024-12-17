@@ -106,7 +106,6 @@ namespace RAHI.Model
                 List<MaxCTPenalty> maxCTPenaltiesNonHIA = CalculateMaxCTPenaltyNonHIA(apparelsNonHI, humidityPenaltyPerApparelTotal);
                 List<MaxCTPenalty> maxCTPenaltiesHIA = CalculateMaxCTPenaltyHIA(apparelsHI, biome, humidityPenaltyPerApparelTotal);
                 List<MaxCTPenalty> maxCTPenalties = maxCTPenaltiesNonHIA.Concat(maxCTPenaltiesHIA).ToList();
-                Log.Warning("RAHI max ct penalties count after HIA:" + maxCTPenalties.Count);
 
                 //Get race base MaxCT value.
                 float maxCTRace = pawn.def.GetStatValueAbstract(StatDefOf.ComfyTemperatureMax);

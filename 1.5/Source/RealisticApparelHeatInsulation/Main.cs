@@ -12,7 +12,7 @@ namespace RealisticApparelHeatInsulation
         static Main() //our constructor
         {
             //UpdateAllApparelHeatInsulation();
-            Log.Message("RealisticApparelHeatInsulation started. Most apparels have their heat insulation values changed!");
+            Log.Message("RealisticApparelHeatInsulation started. Most apparels may have their heat insulation values changed!");
         }
 
         //Alter heat insulation for all apparels.
