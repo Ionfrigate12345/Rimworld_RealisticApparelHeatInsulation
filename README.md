@@ -128,10 +128,10 @@ If your save involves alot of pawns and experience lag because of this mod, plea
 
 
 # Recommended to play with for ultimate challenge:
--Yayo's Planet
--Climate Cycle++
--Adjustable Temperature Events
--VE Events (make heat wave and global warming events appear more often in config)
+- Yayo's Planet
+- Climate Cycle++
+- Adjustable Temperature Events
+- VE Events (make heat wave and global warming events appear more often in config)
 
 
 # 警告：
@@ -257,7 +257,7 @@ Biotech DLC 中的耐热基因/超级耐热基因额外提供 +5°C/+10°C 抗�
 
 # 推荐同时一起开的模组（喜欢极限炎热气候挑战的话）：
 
-Yayo's Planet
-Climate Cycle++
-Adjustable Temperature Events
-VE事件拓展（可以提高热浪和全球变暖事件的概率）
+- Yayo's Planet
+- Climate Cycle++
+- Adjustable Temperature Events
+- VE事件拓展（可以提高热浪和全球变暖事件的概率）
