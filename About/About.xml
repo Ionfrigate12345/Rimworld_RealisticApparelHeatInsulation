@@ -18,6 +18,7 @@
 	</modDependenciesByVersion>
     <loadAfter>
         <li>Ludeon.RimWorld</li>
+        <li>VanillaExpanded.VAPPE</li>
     </loadAfter>
     <description>WARNING: This is a difficulty mod, unrecommended for new players. It will especially make high temperature biomes MUCH harder. No longer it will be possible to simply wear a bunch of legendary hyperweave or devilstrand apparels with alot of armor values then permanently forget the temperature. 
 	But if you love extreme climate challenge, this mod is for you. It will also be more funny to combine it with some others like Yayo's Planet，Climate Cycle++，Adjustable Temperature Events, or simply make heat wave event appear more often in VE Events config.

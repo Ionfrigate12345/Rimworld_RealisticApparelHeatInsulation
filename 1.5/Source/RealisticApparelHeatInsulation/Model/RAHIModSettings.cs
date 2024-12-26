@@ -14,10 +14,10 @@ namespace RAHI.Model
         public float maxCTReductionPerMassKgBetween5And10 = 0.2f;
         public float maxCTReductionPerMassKgAbove10 = 0.5f;
 
-        public float humidityPenaltyPerApparelBiomeTropicalRainforest = 1.0f;
-        public float humidityPenaltyPerApparelBiomeTemperateSwamp = 1.5f;
-        public float humidityPenaltyPerApparelBiomeTropicalSwamp = 2.0f;
-        public float humidityPenaltyPerApparelBiomeWetWeather = 1.5f;
+        public float humidityPenaltyPerApparelBiomeTropicalRainforest = 0.5f;
+        public float humidityPenaltyPerApparelBiomeTemperateSwamp = 1.0f;
+        public float humidityPenaltyPerApparelBiomeTropicalSwamp = 1.5f;
+        public float humidityPenaltyPerApparelBiomeWetWeather = 1.0f;
 
         public float maxCTBonusGeneHeatToleranceSmallValue = 5.0f;
         public float maxCTBonusGeneHeatToleranceSmallPercentage = 0.25f;

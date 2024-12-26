@@ -4,6 +4,15 @@
         \nVanilla : {0}C. Ajusté : {1}C\nDétails :\nMaxCT de base : {2}\nRéduction de pénalité des gènes : {3}%\nBonus des gènes : {4}\nBonus du corps exposé : {5}\nPénalité d'humidité du biome : {6}\nPénalité d'humidité du temps : {7}\nPénalité du poids total des vêtements : {8}\nPénalité des vêtements : {9}
     </RAHI_Hediff_Description>
     
+	<RAHI_Hediff_Description_Exposed_Bodyparts>Corps exposés:</RAHI_Hediff_Description_Exposed_Bodyparts>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders>Épaules</RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Arms>Bras</RAHI_Hediff_Description_Exposed_Bodyparts_Arms>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs>Jambes</RAHI_Hediff_Description_Exposed_Bodyparts_Legs>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short>Jambes (Pentalon court)</RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt>Jambes (Jupe)</RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Torso>Torse</RAHI_Hediff_Description_Exposed_Bodyparts_Torso>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Neck>Cou</RAHI_Hediff_Description_Exposed_Bodyparts_Neck>
+	
     <RAHI_Setting_ModName>RAHI (Realistic Apparel Heat Insulation)</RAHI_Setting_ModName>
     <RAHI_Setting_MaxCTReductionPerVanillaBonus>Pour les vêtements non isolants, au lieu d'augmenter MaxCT, réduit ce pourcentage du bonus de vanilla</RAHI_Setting_MaxCTReductionPerVanillaBonus>
     <RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>Pour les vêtements isolants, au lieu d'augmenter MaxCT, réduit ce pourcentage du bonus de vanilla lors de pénalité d'humidité</RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>

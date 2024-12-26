@@ -4,6 +4,15 @@
 		\nVanilla: {0}C. Adjusted: {1}C\nDetails:\nBase race MaxCT: {2}\nPenalty reduction from genes: {3}%\nBonus from genes: {4}\nBonus from exposed body parts: {5}\nHumidity penalty from biome: {6}\nHumidity penalty from weather: {7}\nPenalty from total apparel weight: {8}\nPenalty from apparels: {9}
 	</RAHI_Hediff_Description>
 	
+	<RAHI_Hediff_Description_Exposed_Bodyparts>Exposed bodyparts:</RAHI_Hediff_Description_Exposed_Bodyparts>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders>Shoulders</RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Arms>Arms</RAHI_Hediff_Description_Exposed_Bodyparts_Arms>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs>Legs</RAHI_Hediff_Description_Exposed_Bodyparts_Legs>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short>Legs (Wearing short)</RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt>Legs (Wearing skirt)</RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Torso>Torso</RAHI_Hediff_Description_Exposed_Bodyparts_Torso>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Neck>Neck</RAHI_Hediff_Description_Exposed_Bodyparts_Neck>
+	
 	<RAHI_Setting_ModName>RAHI (Realistic Apparel Heat Insulation)</RAHI_Setting_ModName>
 	<RAHI_Setting_MaxCTReductionPerVanillaBonus>For non heat insulation apparels, instead of MaxCT increase, will decrease this percentage of vanilla bonus</RAHI_Setting_MaxCTReductionPerVanillaBonus>
 	<RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>For heat insulation apparels (like duster), instead of MaxCT increase, will decrease this percentage of vanilla bonus with humidity penalty</RAHI_Setting_MaxCTReductionPerVanillaBonusHIA>

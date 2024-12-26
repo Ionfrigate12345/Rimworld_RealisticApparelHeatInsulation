@@ -3,6 +3,15 @@
     <RAHI_Hediff_Description>
         \n原版: {0}C。调整后: {1}C\n详情:\n基础种族抗热上限: {2}\n基因减罚: {3}%\n基因奖励: {4}\n裸露身体部位加成: {5}\n气候湿度惩罚: {6}\n天气湿度惩罚: {7}\n衣服总重量惩罚: {8}\n衣服惩罚: {9}
     </RAHI_Hediff_Description>
+	
+	<RAHI_Hediff_Description_Exposed_Bodyparts>裸露身体部位:</RAHI_Hediff_Description_Exposed_Bodyparts>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders>肩膀</RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Arms>手臂</RAHI_Hediff_Description_Exposed_Bodyparts_Arms>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs>腿</RAHI_Hediff_Description_Exposed_Bodyparts_Legs>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short>腿 (穿着短裤)</RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt>腿 (穿着裙子)</RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Torso>躯干</RAHI_Hediff_Description_Exposed_Bodyparts_Torso>
+	<RAHI_Hediff_Description_Exposed_Bodyparts_Neck>脖子</RAHI_Hediff_Description_Exposed_Bodyparts_Neck>
     
     <RAHI_Setting_ModName>RAHI (真实抗热上限)</RAHI_Setting_ModName>
     <RAHI_Setting_MaxCTReductionPerVanillaBonus>对于非隔热衣服，每件减少抗热上限而不是增加，数额为该百分比的原版奖励</RAHI_Setting_MaxCTReductionPerVanillaBonus>

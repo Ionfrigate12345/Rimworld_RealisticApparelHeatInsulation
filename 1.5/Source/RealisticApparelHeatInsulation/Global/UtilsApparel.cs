@@ -37,6 +37,16 @@ namespace RealisticApparelHeatInsulation.Global
                 ;
         }
 
+        public static bool IsVEApparelFootwear(Apparel apparel)
+        {
+            return apparel.def.defName.StartsWith("VAE_Footwear_");
+        }
+
+        public static bool IsVEApparelHandwear(Apparel apparel)
+        {
+            return apparel.def.defName.StartsWith("VAE_Handwear_");
+        }
+
         public static float GetApparelDefaultMaxComfortableTemperatureBonus(Apparel apparel)
         {
             var valueIH = apparel.GetStatValue(StatDefOf.Insulation_Heat);

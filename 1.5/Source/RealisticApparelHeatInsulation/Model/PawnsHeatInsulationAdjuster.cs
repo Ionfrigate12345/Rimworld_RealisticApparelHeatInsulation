@@ -27,7 +27,7 @@ namespace RAHI.Model
             base.WorldComponentTick();
 
             var tickCount = Find.TickManager.TicksGame;
-            var checkInteval = GenDate.TicksPerHour / 2;
+            var checkInteval = GenDate.TicksPerHour;
             if (tickCount % checkInteval != 123)
                 return;
 
@@ -136,7 +136,7 @@ namespace RAHI.Model
                 -  +1 bonus for non covered neck.
                 However the maximum MaxCT bonus for this part can't go beyond 15.
                 */
-                float maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn);
+                float maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn, out string exposedBodyPartDesc);
 
                 /**
                 TODO In later versions
@@ -199,6 +199,13 @@ namespace RAHI.Model
                         descDetailApparels
                     )
                 );
+                if (!String.IsNullOrEmpty(exposedBodyPartDesc))
+                {
+                    comp.CustomDescription += "\n";
+                    comp.CustomDescription += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts".Translate());
+                    comp.CustomDescription += "\n";
+                    comp.CustomDescription += exposedBodyPartDesc;
+                }
             }
         }
 
@@ -215,13 +222,11 @@ namespace RAHI.Model
             {
                 humidityPenaltyPerApparelBiome = RAHIModWindow.Instance.settings.humidityPenaltyPerApparelBiomeTropicalRainforest;
             }
-
-            if (biome == RAHIDefOf.TemperateSwamp)
+            else if (biome == RAHIDefOf.TemperateSwamp)
             {
                 humidityPenaltyPerApparelBiome = RAHIModWindow.Instance.settings.humidityPenaltyPerApparelBiomeTemperateSwamp;
             }
-
-            if (biome == RAHIDefOf.TropicalSwamp)
+            else if (biome == RAHIDefOf.TropicalSwamp)
             {
                 humidityPenaltyPerApparelBiome = RAHIModWindow.Instance.settings.humidityPenaltyPerApparelBiomeTropicalSwamp;
             }
@@ -267,6 +272,12 @@ namespace RAHI.Model
                     {
                         maxCTReduction += (massKg - 10) * RAHIModWindow.Instance.settings.maxCTReductionPerMassKgAbove10
                             + 5 * RAHIModWindow.Instance.settings.maxCTReductionPerMassKgBetween5And10;
+                    }
+
+                    //If VE Apparel footwear or handwear, half penalty
+                    if(UtilsApparel.IsVEApparelFootwear(apparel) || UtilsApparel.IsVEApparelHandwear(apparel))
+                    {
+                        maxCTReduction = maxCTReduction / 2.0f;
                     }
                 }
 
@@ -373,20 +384,30 @@ namespace RAHI.Model
             }
         }
 
-        private float CalculateMaxCTPenaltyExposedBodyPartReduction(Pawn pawn)
+        private float CalculateMaxCTPenaltyExposedBodyPartReduction(Pawn pawn, out string exposedBodyPartDesc)
         {
             var allApparels = pawn.apparel.WornApparel;
             bool coveredShoulders = false;
             bool coveredArms = false;
             bool coveredLegs = false;
+            bool wearingShort = false;
+            bool wearingSkirt = false;
             bool coveredTorso = false;
             bool coveredNeck = false;
             foreach (var apparel in allApparels)
             {
                 var bpGroups = apparel.def.apparel.bodyPartGroups;
+
+                //Wearing shorts or skirts from VE Apparel don't count as leg covering.
+                if (apparel.def.defName == "VAE_Apparel_Shorts") { wearingShort = true; continue; }
+                else if (apparel.def.defName == "VAE_Apparel_Skirt") { wearingSkirt = true; continue; }
+                else
+                {
+                    coveredLegs = (coveredLegs ? coveredLegs : bpGroups.Any(bpg => bpg.defName.ToLower() == "legs"));
+                }
+
                 coveredShoulders = (coveredShoulders ? coveredShoulders : bpGroups.Any(bpg => bpg.defName.ToLower() == "shoulders"));
                 coveredArms = (coveredArms ? coveredArms : bpGroups.Any(bpg => bpg.defName.ToLower() == "arms"));
-                coveredLegs = (coveredLegs ? coveredLegs : bpGroups.Any(bpg => bpg.defName.ToLower() == "legs"));
                 coveredTorso = (coveredTorso ? coveredTorso : bpGroups.Any(bpg => bpg.defName.ToLower() == "torso"));
                 coveredNeck = (coveredNeck ? coveredNeck : bpGroups.Any(bpg => bpg.defName.ToLower() == "neck"));
             }
@@ -396,6 +417,38 @@ namespace RAHI.Model
                 + (!coveredTorso ? RAHIModWindow.Instance.settings.maxCTBonusExposedTorso : 0)
                 + (!coveredNeck ? RAHIModWindow.Instance.settings.maxCTBonusExposedNeck : 0)
                 ;
+            exposedBodyPartDesc = "";
+            if (!coveredShoulders)
+            {
+                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders".Translate()) + "\n";
+            }
+            if (!coveredArms)
+            {
+                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Arms".Translate()) + "\n";
+            }
+            if (!coveredLegs)
+            {
+                if (wearingShort)
+                {
+                    exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short".Translate()) + "\n";
+                }
+                else if (wearingSkirt)
+                {
+                    exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt".Translate()) + "\n";
+                }
+                else
+                {
+                    exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs".Translate()) + "\n";
+                }
+            }
+            if (!coveredTorso)
+            {
+                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Torso".Translate()) + "\n";
+            }
+            if (!coveredNeck)
+            {
+                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Neck".Translate()) + "\n";
+            }
             return Math.Min(bonus, RAHIModWindow.Instance.settings.maxCTBonusExposedMaxTotal);
         }
 
