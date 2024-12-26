@@ -91,8 +91,8 @@ There is a cap for this bonus to not let nudist trait become overpowered.
 
 # DLC requirement:
 
-Biotech: Not a must have, but without it you will never get heat resistant genes bonus
-Royalty: Not a must have either, but without it you wont have the most important Phoenix Armor.
+- Biotech: Not a must have, but without it you will never get heat resistant genes bonus
+- Royalty: Not a must have either, but without it you wont have the most important Phoenix Armor.
 
 
 # Compatibility:
@@ -102,7 +102,8 @@ But for modded apparels, they will be dynamically classified by RAHI:
 - In no case they will be considerred as HIA
 - If they have SOS2 "Decompression Resistance" trait, no matter if SOS2 is installed or not, their MaxCT will not be touched by RAHI.
 - All other rules about MaxCT penalty calculation apply.
-Mods adding new biomes wont be considered as "dry" biome and wont have HIA bonus triggered. 
+
+Besides, Mods adding new biomes will never be considered as "dry" biome so will never trigger HIA bonus. 
 
 
 # Gameplay balance:
@@ -220,8 +221,8 @@ Biotech DLC 中的耐热基因/超级耐热基因额外提供 +5°C/+10°C 抗�
 
 # DLC 需求：
 
-生物：非必需，但少了它就没有耐热基因了。
-皇家：非必需，但少了它就没凤凰甲了。
+- 生物：非必需，但少了它就没有耐热基因了。
+- 皇家：非必需，但少了它就没凤凰甲了。
 
 
 # 兼容性：
@@ -230,6 +231,7 @@ Biotech DLC 中的耐热基因/超级耐热基因额外提供 +5°C/+10°C 抗�
 - 它们不会被算为类似防尘衣的“抗热衣物”
 - 如果模组作者在XML文件中加了SOS2的“抗泄压”属性（Decompression Resistance），无论SOS2有没有安装，本模组都不会改变其抗热加成。
 - 所有其它服饰都会按普通非抗热服饰来计算其抗热惩罚。
+
 另外，本模组只认定原版的沙漠，极端沙漠和干旱灌木丛为“干燥”气候。对于增加新气候的模组，新气候不会被本模组判定为“干燥”气候，因此防尘衣这类抗热服饰的特殊加成不会触发。
 
 
