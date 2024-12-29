@@ -34,6 +34,7 @@ namespace RealisticApparelHeatInsulation.Global
                 || apparel.def.defName == "VAE_Apparel_CasualTShirt"
                 || apparel.def.defName == "VAE_Apparel_Shorts"
                 || apparel.def.defName == "VAE_Apparel_Skirt"
+                || apparel.def.defName == "VAE_Apparel_TankTop"
                 ;
         }
 
