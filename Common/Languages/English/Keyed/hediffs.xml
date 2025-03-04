@@ -36,4 +36,7 @@
 	<RAHI_Setting_MaxCTBonusExposedNeck>MaxCT increases this value when neck is not covered by any apparel</RAHI_Setting_MaxCTBonusExposedNeck>
 	<RAHI_Setting_MaxCTBonusExposedMaxTotal>Total MaxCT increased by body part exposure cannot exceed this value</RAHI_Setting_MaxCTBonusExposedMaxTotal>
 	
+	<RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled>Ignore apparels with SOS2 EVA decompression ability even without SOS2 installed</RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled>
+    <RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalledTooltip>In case SOS2 not installed, checking this option will make RAHI still ignore modded apparels with SOS2 EVA decompression resistance and avoid altering their MaxCT. Otherwise they will only be ignored with SOS2 installed. </RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalledTooltip>
+	
 </LanguageData>

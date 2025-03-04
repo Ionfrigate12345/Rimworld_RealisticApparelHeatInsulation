@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RAHI.View;
 using RimWorld;
 using Verse;
 
@@ -20,7 +19,11 @@ namespace RealisticApparelHeatInsulation.Global
 
         public static bool HasSOS2DecompressionResistanceStat(Apparel apparel)
         {
-            return apparel.def.comps.Any(comp => comp.compClass?.FullName == "SaveOurShip2.CompEVA");
+            if(ModsConfig.IsActive("kentington.saveourship2") || RAHIModWindow.Instance.settings.ignoreSOS2EVAApparelsWithoutSOS2Installed)
+            {
+                return apparel.def.comps.Any(comp => comp.compClass?.FullName == "SaveOurShip2.CompEVA");
+            }
+            return false;
         }
 
         public static bool IsBaseClothingWithoutPenalty(Apparel apparel)

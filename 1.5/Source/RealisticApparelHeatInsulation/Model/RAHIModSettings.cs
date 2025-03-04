@@ -31,6 +31,8 @@ namespace RAHI.Model
         public float maxCTBonusExposedNeck = 2.0f;
         public float maxCTBonusExposedMaxTotal = 15.0f;
 
+        public bool ignoreSOS2EVAApparelsWithoutSOS2Installed = true;
+
         public override void ExposeData()
         {
             Scribe_Values.Look(value: ref maxCTReductionPerVanillaBonus, label: "RAHI_Setting_MaxCTReductionPerVanillaBonus", defaultValue: 0.2f);
@@ -54,6 +56,8 @@ namespace RAHI.Model
             Scribe_Values.Look(value: ref maxCTBonusExposedTorso, label: "RAHI_Setting_MaxCTBonusExposedTorso", defaultValue: 6.0f);
             Scribe_Values.Look(value: ref maxCTBonusExposedNeck, label: "RAHI_Setting_MaxCTBonusExposedNeck", defaultValue: 2.0f);
             Scribe_Values.Look(value: ref maxCTBonusExposedMaxTotal, label: "RAHI_Setting_MaxCTBonusExposedMaxTotal", defaultValue: 15.0f);
+
+            Scribe_Values.Look(value: ref ignoreSOS2EVAApparelsWithoutSOS2Installed, label: "RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled", defaultValue: true);
         }
     }
 }

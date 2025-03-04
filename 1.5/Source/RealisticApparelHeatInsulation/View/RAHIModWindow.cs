@@ -24,7 +24,7 @@ namespace RAHI.View
 
         public override void DoSettingsWindowContents(Rect rect)
         {
-            Rect viewRect = new Rect(0f, 0f, rect.width - 16f, rect.height + 300f);
+            Rect viewRect = new Rect(0f, 0f, rect.width - 16f, rect.height + 320f);
             Listing_Standard options = new Listing_Standard();
             Widgets.BeginScrollView(rect, ref scrollPosition, viewRect);
             options.Begin(viewRect);
@@ -69,6 +69,11 @@ namespace RAHI.View
             settings.maxCTBonusExposedNeck = options.Slider(settings.maxCTBonusExposedNeck, 0f, 10.0f);
             options.Label($"{"RAHI_Setting_MaxCTBonusExposedMaxTotal".Translate()}: {settings.maxCTBonusExposedMaxTotal.ToStringByStyle(style: ToStringStyle.FloatOne)}");
             settings.maxCTBonusExposedMaxTotal = options.Slider(settings.maxCTBonusExposedMaxTotal, 0f, 30.0f);
+
+            options.CheckboxLabeled("RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled".Translate(), 
+                ref settings.ignoreSOS2EVAApparelsWithoutSOS2Installed,
+                "RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalledTooltip".Translate()
+                );
 
             options.End();
             Widgets.EndScrollView();

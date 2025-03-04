@@ -32,7 +32,7 @@ namespace RAHI.Model
                 return;
 
             var playerPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction_NoCryptosleep
-                .Where(p => p.RaceProps.Humanlike).ToList();
+                .Where(p => p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer).ToList();
 
             foreach (var pawn in playerPawns)
             {
