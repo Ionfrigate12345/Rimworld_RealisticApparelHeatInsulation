@@ -67,6 +67,8 @@ namespace RAHI.Model
                 bool coveredTorso;
                 bool coveredLegs;
                 bool coveredNeck;
+                bool wearingShort;
+                bool wearingSkirt;
 
                 //If any of them > 0, calculate exposed body parts efficiency bonus regardless of temperature.
                 if (efficiencyBonusExposedShoulders > 0 || efficiencyBonusExposedArms > 0 || efficiencyBonusExposedLegs > 0) 
@@ -77,20 +79,14 @@ namespace RAHI.Model
                         out coveredArms,
                         out coveredTorso,
                         out coveredLegs,
-                        out coveredNeck
+                        out coveredNeck,
+                        out wearingShort,
+                        out wearingSkirt
                     );
-                    if (efficiencyBonusExposedShoulders > 0 && coveredShoulders)
-                    {
-                        AddExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Shoulder, efficiencyBonusExposedShoulders);
-                    }
-                    if (efficiencyBonusExposedArms > 0 && coveredArms)
-                    {
-                        AddExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Arm, efficiencyBonusExposedArms);
-                    }
-                    if (efficiencyBonusExposedLegs > 0 && coveredLegs)
-                    {
-                        AddExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Leg, efficiencyBonusExposedLegs);
-                    }
+                    UpdateExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Shoulder, coveredShoulders ? 0 : efficiencyBonusExposedShoulders);
+                    UpdateExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Arm, coveredArms ? 0 : efficiencyBonusExposedArms);
+                    UpdateExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Leg, 
+                        (coveredLegs && !wearingShort && !wearingSkirt) ? 0 : efficiencyBonusExposedLegs);
                 }
 
                 if (temperature <= 30)
@@ -182,7 +178,9 @@ namespace RAHI.Model
                         out coveredArms,
                         out coveredTorso,
                         out coveredLegs,
-                        out coveredNeck
+                        out coveredNeck,
+                        out wearingShort,
+                        out wearingSkirt
                     );
                 }
 
@@ -439,7 +437,9 @@ namespace RAHI.Model
             out bool coveredArms,
             out bool coveredTorso,
             out bool coveredLegs,
-            out bool coveredNeck
+            out bool coveredNeck,
+            out bool wearingShort,
+            out bool wearingSkirt
             )
         {
             var allApparels = pawn.apparel.WornApparel;
@@ -448,8 +448,8 @@ namespace RAHI.Model
             coveredLegs = false;
             coveredTorso = false;
             coveredNeck = false;
-            bool wearingShort = false;
-            bool wearingSkirt = false;
+            wearingShort = false;
+            wearingSkirt = false;
             foreach (var apparel in allApparels)
             {
                 var bpGroups = apparel.def.apparel.bodyPartGroups;
@@ -518,34 +518,51 @@ namespace RAHI.Model
             return sum;
         }
 
-        private void AddExposedBodyPartEfficiencyBoost(Pawn pawn, BodyPartDef bodyPartDef, float efficiencyBonus)
+        private void UpdateExposedBodyPartEfficiencyBoost(Pawn pawn, BodyPartDef bodyPartDef, float efficiencyBonus)
         {
             if (pawn == null || bodyPartDef == null)
                 return;
 
-            // Find the body part in the pawn's body
-            BodyPartRecord bodyPart = pawn.health.hediffSet.GetNotMissingParts()
-                .FirstOrDefault(bp => bp.def == bodyPartDef);
+            List<BodyPartRecord> bodyParts = pawn.health.hediffSet.GetNotMissingParts()
+                .Where(bp => bp.def == bodyPartDef).ToList();
 
-            if (bodyPart == null)
-                return;
-
-            // Create the hediff
-            var hediff = pawn.health.hediffSet.hediffs.Where(x =>
-                        x.def.defName == RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost.defName
-                        && x.Part.def == bodyPartDef
-                    ).FirstOrDefault();
-            if(hediff != null)
+            if (bodyParts.NullOrEmpty())
             {
-                pawn.health.RemoveHediff(hediff);
-            }
-            if(efficiencyBonus <= 0)
-            {
+                Log.Error($"[RAHI] No valid body parts found for {bodyPartDef.defName} on {pawn.Name}!");
                 return;
             }
-            hediff = HediffMaker.MakeHediff(RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost, pawn, bodyPart);
-            hediff.Severity = efficiencyBonus;
-            pawn.health.AddHediff(hediff);
+            if (RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost == null)
+            {
+                Log.Error("[RAHI] RAHI_ExposedBodyPartsEfficiencyBoost HediffDef is null!");
+                return;
+            }
+            foreach (var bodyPart in bodyParts)
+            {
+                // Remove existing hediff on this body part
+                var existingHediff = pawn.health.hediffSet.hediffs
+                    .FirstOrDefault(x => x.def == RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost && x.Part == bodyPart);
+                if (existingHediff != null)
+                {
+                    pawn.health.RemoveHediff(existingHediff);
+                }
+
+                if (efficiencyBonus <= 0)
+                {
+                    continue; 
+                }
+
+                //Log.Message($"[RAHI] Applying Hediff to {pawn.Name} for {bodyPart.Label} ({bodyPart.def.defName}), efficiencyBonus: {efficiencyBonus}");
+
+                // Create and apply the hediff
+                Hediff hediff = HediffMaker.MakeHediff(RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost, pawn, bodyPart);
+                if (hediff == null)
+                {
+                    Log.Error("[RAHI] HediffMaker.MakeHediff returned null!");
+                    continue;
+                }
+                pawn.health.AddHediff(hediff);
+                hediff.Severity = efficiencyBonus;
+            }
         }
     }
 }

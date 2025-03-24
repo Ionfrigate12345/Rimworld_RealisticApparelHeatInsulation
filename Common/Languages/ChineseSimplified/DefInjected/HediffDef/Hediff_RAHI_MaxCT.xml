@@ -3,7 +3,7 @@
 
   <RAHI_AdjustedMaxCT.description>真实抗热上限（RAHI）对该人物的抗热上限进行了调整</RAHI_AdjustedMaxCT.description>
   
-  <RAHI_ExposedBodyPartsEfficiencyBoost.label>裸露身体部位效率奖励</RAHI_ExposedBodyPartsEfficiencyBoost.label>
+  <RAHI_ExposedBodyPartsEfficiencyBoost.label>裸露身体部位</RAHI_ExposedBodyPartsEfficiencyBoost.label>
   <RAHI_ExposedBodyPartsEfficiencyBoost.description>真实抗热上限（RAHI）对该人物的裸露身体部位效率进行了调整</RAHI_ExposedBodyPartsEfficiencyBoost.description>
 
 </LanguageData>

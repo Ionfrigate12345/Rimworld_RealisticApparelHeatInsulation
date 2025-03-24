@@ -24,7 +24,7 @@ namespace RAHI.View
 
         public override void DoSettingsWindowContents(Rect rect)
         {
-            Rect viewRect = new Rect(0f, 0f, rect.width - 16f, rect.height + 320f);
+            Rect viewRect = new Rect(0f, 0f, rect.width - 16f, rect.height + 450f);
             Listing_Standard options = new Listing_Standard();
             Widgets.BeginScrollView(rect, ref scrollPosition, viewRect);
             options.Begin(viewRect);
