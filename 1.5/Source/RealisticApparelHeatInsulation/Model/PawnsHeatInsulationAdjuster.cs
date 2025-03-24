@@ -31,6 +31,10 @@ namespace RAHI.Model
             if (tickCount % checkInteval != 123)
                 return;
 
+            var efficiencyBonusExposedShoulders = RAHIModWindow.Instance.settings.efficiencyBonusExposedShoulders;
+            var efficiencyBonusExposedArms = RAHIModWindow.Instance.settings.efficiencyBonusExposedArms;
+            var efficiencyBonusExposedLegs = RAHIModWindow.Instance.settings.efficiencyBonusExposedLegs;
+
             var playerPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction_NoCryptosleep
                 .Where(p => p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer).ToList();
 
@@ -54,6 +58,39 @@ namespace RAHI.Model
                 else
                 {
                     continue;
+                }
+
+                float maxCTBonusFromExposedBodyPart = float.MaxValue; //Uninitialized value
+                string exposedBodyPartDesc = String.Empty;
+                bool coveredShoulders;
+                bool coveredArms;
+                bool coveredTorso;
+                bool coveredLegs;
+                bool coveredNeck;
+
+                //If any of them > 0, calculate exposed body parts efficiency bonus regardless of temperature.
+                if (efficiencyBonusExposedShoulders > 0 || efficiencyBonusExposedArms > 0 || efficiencyBonusExposedLegs > 0) 
+                {
+                    maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn,
+                        out exposedBodyPartDesc,
+                        out coveredShoulders,
+                        out coveredArms,
+                        out coveredTorso,
+                        out coveredLegs,
+                        out coveredNeck
+                    );
+                    if (efficiencyBonusExposedShoulders > 0 && coveredShoulders)
+                    {
+                        AddExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Shoulder, efficiencyBonusExposedShoulders);
+                    }
+                    if (efficiencyBonusExposedArms > 0 && coveredArms)
+                    {
+                        AddExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Arm, efficiencyBonusExposedArms);
+                    }
+                    if (efficiencyBonusExposedLegs > 0 && coveredLegs)
+                    {
+                        AddExposedBodyPartEfficiencyBoost(pawn, BodyPartDefOf.Leg, efficiencyBonusExposedLegs);
+                    }
                 }
 
                 if (temperature <= 30)
@@ -136,7 +173,18 @@ namespace RAHI.Model
                 -  +1 bonus for non covered neck.
                 However the maximum MaxCT bonus for this part can't go beyond 15.
                 */
-                float maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn, out string exposedBodyPartDesc);
+                if(maxCTBonusFromExposedBodyPart == float.MaxValue)
+                { 
+                    //If hasn't previously initialized (To avoid running the function again for better optimization)
+                    maxCTBonusFromExposedBodyPart = CalculateMaxCTPenaltyExposedBodyPartReduction(pawn,
+                        out exposedBodyPartDesc,
+                        out coveredShoulders,
+                        out coveredArms,
+                        out coveredTorso,
+                        out coveredLegs,
+                        out coveredNeck
+                    );
+                }
 
                 /**
                 TODO In later versions
@@ -384,16 +432,24 @@ namespace RAHI.Model
             }
         }
 
-        private float CalculateMaxCTPenaltyExposedBodyPartReduction(Pawn pawn, out string exposedBodyPartDesc)
+        private float CalculateMaxCTPenaltyExposedBodyPartReduction(
+            Pawn pawn, 
+            out string exposedBodyPartDesc,
+            out bool coveredShoulders,
+            out bool coveredArms,
+            out bool coveredTorso,
+            out bool coveredLegs,
+            out bool coveredNeck
+            )
         {
             var allApparels = pawn.apparel.WornApparel;
-            bool coveredShoulders = false;
-            bool coveredArms = false;
-            bool coveredLegs = false;
+            coveredShoulders = false;
+            coveredArms = false;
+            coveredLegs = false;
+            coveredTorso = false;
+            coveredNeck = false;
             bool wearingShort = false;
             bool wearingSkirt = false;
-            bool coveredTorso = false;
-            bool coveredNeck = false;
             foreach (var apparel in allApparels)
             {
                 var bpGroups = apparel.def.apparel.bodyPartGroups;
@@ -460,6 +516,36 @@ namespace RAHI.Model
                 sum += maxCTPenalty.MaxCTReduction;
             }
             return sum;
+        }
+
+        private void AddExposedBodyPartEfficiencyBoost(Pawn pawn, BodyPartDef bodyPartDef, float efficiencyBonus)
+        {
+            if (pawn == null || bodyPartDef == null)
+                return;
+
+            // Find the body part in the pawn's body
+            BodyPartRecord bodyPart = pawn.health.hediffSet.GetNotMissingParts()
+                .FirstOrDefault(bp => bp.def == bodyPartDef);
+
+            if (bodyPart == null)
+                return;
+
+            // Create the hediff
+            var hediff = pawn.health.hediffSet.hediffs.Where(x =>
+                        x.def.defName == RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost.defName
+                        && x.Part.def == bodyPartDef
+                    ).FirstOrDefault();
+            if(hediff != null)
+            {
+                pawn.health.RemoveHediff(hediff);
+            }
+            if(efficiencyBonus <= 0)
+            {
+                return;
+            }
+            hediff = HediffMaker.MakeHediff(RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost, pawn, bodyPart);
+            hediff.Severity = efficiencyBonus;
+            pawn.health.AddHediff(hediff);
         }
     }
 }

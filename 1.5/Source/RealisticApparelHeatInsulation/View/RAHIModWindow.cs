@@ -70,6 +70,16 @@ namespace RAHI.View
             options.Label($"{"RAHI_Setting_MaxCTBonusExposedMaxTotal".Translate()}: {settings.maxCTBonusExposedMaxTotal.ToStringByStyle(style: ToStringStyle.FloatOne)}");
             settings.maxCTBonusExposedMaxTotal = options.Slider(settings.maxCTBonusExposedMaxTotal, 0f, 30.0f);
 
+            options.Label($"{"RAHI_Setting_BodyPartEfficiencyExposedShoulders".Translate()}: {settings.efficiencyBonusExposedShoulders.ToStringByStyle(style: ToStringStyle.FloatTwo)}");
+            settings.efficiencyBonusExposedShoulders = options.Slider(settings.efficiencyBonusExposedShoulders, 0f, 0.5f);
+            settings.efficiencyBonusExposedShoulders = (float)Math.Round(settings.efficiencyBonusExposedShoulders / 0.05) * 0.05f;
+            options.Label($"{"RAHI_Setting_BodyPartEfficiencyExposedArms".Translate()}: {settings.efficiencyBonusExposedArms.ToStringByStyle(style: ToStringStyle.FloatTwo)}");
+            settings.efficiencyBonusExposedArms = options.Slider(settings.efficiencyBonusExposedArms, 0f, 0.5f);
+            settings.efficiencyBonusExposedArms = (float)Math.Round(settings.efficiencyBonusExposedArms / 0.05) * 0.05f;
+            options.Label($"{"RAHI_Setting_BodyPartEfficiencyExposedLegs".Translate()}: {settings.efficiencyBonusExposedLegs.ToStringByStyle(style: ToStringStyle.FloatTwo)}");
+            settings.efficiencyBonusExposedLegs = options.Slider(settings.efficiencyBonusExposedLegs, 0f, 0.5f);
+            settings.efficiencyBonusExposedLegs = (float)Math.Round(settings.efficiencyBonusExposedLegs / 0.05) * 0.05f;
+
             options.CheckboxLabeled("RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled".Translate(), 
                 ref settings.ignoreSOS2EVAApparelsWithoutSOS2Installed,
                 "RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalledTooltip".Translate()

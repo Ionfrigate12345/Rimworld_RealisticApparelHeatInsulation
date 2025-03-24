@@ -31,5 +31,6 @@ namespace RAHI.Def
 
         //Hediff
         public static HediffDef RAHI_AdjustedMaxCT;
+        public static HediffDef RAHI_ExposedBodyPartsEfficiencyBoost;
     }
 }

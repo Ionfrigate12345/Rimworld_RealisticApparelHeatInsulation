@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<HediffDef ParentName="HediffWithComps">
+		<defName>RAHI_ExposedBodyPartsEfficiencyBoost</defName>
+		<label>Efficiency boost</label>
+		<description>RAHI has adjusted exposed body parts for this pawn.</description>
+		<hediffClass>RimWorld.HediffWithComps</hediffClass>
+		<stages>
+			<li>
+				<minSeverity>0.05</minSeverity>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.1</minSeverity>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.15</minSeverity>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.2</minSeverity>
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.25</minSeverity>
+				<partEfficiencyOffset>0.25</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.3</minSeverity>
+				<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.35</minSeverity>
+				<partEfficiencyOffset>0.35</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.4</minSeverity>
+				<partEfficiencyOffset>0.4</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.45</minSeverity>
+				<partEfficiencyOffset>0.45</partEfficiencyOffset>
+			</li>
+			<li>
+				<minSeverity>0.5</minSeverity>
+				<partEfficiencyOffset>0.5</partEfficiencyOffset>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

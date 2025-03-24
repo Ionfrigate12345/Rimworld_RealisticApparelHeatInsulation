@@ -2,5 +2,8 @@
 <LanguageData>
 
   <RAHI_AdjustedMaxCT.description>RAHI a ajusté sa température comfortable maximum(MaxCT)</RAHI_AdjustedMaxCT.description>
+  
+  <RAHI_ExposedBodyPartsEfficiencyBoost.label>Bonus d'efficacité partie exposé</RAHI_ExposedBodyPartsEfficiencyBoost.label>
+  <RAHI_ExposedBodyPartsEfficiencyBoost.description>RAHI a ajusté l'efficacité de certaines parties du corps exposées</RAHI_ExposedBodyPartsEfficiencyBoost.description>
 
 </LanguageData>

@@ -38,6 +38,8 @@ namespace RealisticApparelHeatInsulation.Global
                 || apparel.def.defName == "VAE_Apparel_Shorts"
                 || apparel.def.defName == "VAE_Apparel_Skirt"
                 || apparel.def.defName == "VAE_Apparel_TankTop"
+                //All apparels from Underwhere
+                || apparel.def.defName.StartsWith("UnderWhere_") 
                 ;
         }
 

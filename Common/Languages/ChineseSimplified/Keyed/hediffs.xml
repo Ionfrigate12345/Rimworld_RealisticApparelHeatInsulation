@@ -36,6 +36,10 @@
     <RAHI_Setting_MaxCTBonusExposedNeck>当脖子没有被任何衣物覆盖时，增加此数额的抗热上限</RAHI_Setting_MaxCTBonusExposedNeck>
     <RAHI_Setting_MaxCTBonusExposedMaxTotal>裸露身体部位的抗热上限奖励不能超过该数额</RAHI_Setting_MaxCTBonusExposedMaxTotal>
 	
+    <RAHI_Setting_BodyPartEfficiencyExposedShoulders>当肩膀没有被任何衣物覆盖时，增加此百分比的该身体部件效率</RAHI_Setting_BodyPartEfficiencyExposedShoulders>
+    <RAHI_Setting_BodyPartEfficiencyExposedArms>当手臂没有被任何衣物覆盖时，增加此百分比的该身体部件效率</RAHI_Setting_BodyPartEfficiencyExposedArms>
+    <RAHI_Setting_BodyPartEfficiencyExposedLegs>当腿部没有被任何衣物覆盖时，增加此百分比的该身体部件效率</RAHI_Setting_BodyPartEfficiencyExposedLegs>
+	
     <RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled>在SOS2未安装时依然忽略抗泄压模组衣物</RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalled>
     <RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalledTooltip>如果勾选此选项，即使在SOS2未安装时，本模组依然会忽略那些带有EVA抗泄压(Decompression)属性的衣物，不会改变其抗热上限。如果未勾选，则只有在SOS2安装时才会忽略。</RAHI_Setting_IgnoreSOS2DecompressionApparelWithoutModInstalledTooltip>
 </LanguageData>
