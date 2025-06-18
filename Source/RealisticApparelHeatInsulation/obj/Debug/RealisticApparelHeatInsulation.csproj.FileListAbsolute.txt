@@ -3,3 +3,7 @@ C:\SteamLibrary\steamapps\common\RimWorld\Mods\RealisticApparelHeatInsulation\1.
 D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.csproj.AssemblyReference.cache
 D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.csproj.CoreCompileInputs.cache
 D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\1.5\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.dll
+C:\SteamLibrary\steamapps\common\RimWorld\Mods\RealisticApparelHeatInsulation\1.6\Assemblies\RealisticApparelHeatInsulation.dll
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.csproj.AssemblyReference.cache
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.csproj.CoreCompileInputs.cache
+D:\OneDrive\Games\RimworldModSources\RealisticApparelHeatInsulation\Source\RealisticApparelHeatInsulation\obj\Debug\RealisticApparelHeatInsulation.dll

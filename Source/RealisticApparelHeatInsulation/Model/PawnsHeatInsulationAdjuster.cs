@@ -35,7 +35,7 @@ namespace RAHI.Model
             var efficiencyBonusExposedArms = RAHIModWindow.Instance.settings.efficiencyBonusExposedArms;
             var efficiencyBonusExposedLegs = RAHIModWindow.Instance.settings.efficiencyBonusExposedLegs;
 
-            var playerPawns = PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_OfPlayerFaction_NoCryptosleep
+            var playerPawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction_NoCryptosleep
                 .Where(p => p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer).ToList();
 
             foreach (var pawn in playerPawns)
