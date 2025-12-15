@@ -26,7 +26,7 @@ namespace RAHI.Model
         public override void WorldComponentTick()
         {
             var tickCount = Find.TickManager.TicksGame;
-            var checkInteval = GenDate.TicksPerHour / 4;
+            var checkInteval = GenDate.TicksPerHour;
             if (tickCount % checkInteval != 123)
                 return;
 
