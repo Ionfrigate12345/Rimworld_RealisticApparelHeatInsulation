@@ -479,34 +479,34 @@ namespace RAHI.Model
                 ;
             if (!coveredShoulders)
             {
-                buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders.Value);
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders.Value);
             }
             if (!coveredArms)
             {
-                buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Arms.Value);
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Arms.Value);
             }
             if (!coveredLegs)
             {
                 if (wearingShort)
                 {
-                    buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short.Value);
+                    buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short.Value);
                 }
                 else if (wearingSkirt)
                 {
-                    buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt.Value);
+                    buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt.Value);
                 }
                 else
                 {
-                    buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs.Value);
+                    buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs.Value);
                 }
             }
             if (!coveredTorso)
             {
-                buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Torso.Value);
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Torso.Value);
             }
             if (!coveredNeck)
             {
-                buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Neck.Value);
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Neck.Value);
             }
             exposedBodyPartDesc = string.Join("\n", buf);
             return Math.Min(bonus, RAHIModWindow.Instance.settings.maxCTBonusExposedMaxTotal);
