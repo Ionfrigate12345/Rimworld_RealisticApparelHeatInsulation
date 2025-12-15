@@ -70,19 +70,17 @@ namespace RealisticApparelHeatInsulation.Global
             return apparel.GetStatValue(StatDefOf.Mass);
         }
 
-        public static List<Apparel> GetAllHeatInsulationClothingsOnPawn(Pawn pawn)
+        public static IEnumerable<Apparel> GetAllHeatInsulationClothingsOnPawn(Pawn pawn)
         {
-            var apparels = pawn.apparel.WornApparel.Where(apparel => validIHApparelDefNames.Contains(apparel.def.defName)).ToList();
-            return apparels;
+            return pawn.apparel.WornApparel.Where(apparel => validIHApparelDefNames.Contains(apparel.def.defName));
         }
 
-        public static List<Apparel> GetAllEligibleNonHeatInsulationClothingsOnPawn(Pawn pawn)
+        public static IEnumerable<Apparel> GetAllEligibleNonHeatInsulationClothingsOnPawn(Pawn pawn)
         {
-            var apparels = pawn.apparel.WornApparel.Where(apparel => !validIHApparelDefNames.Contains(apparel.def.defName)
+            return pawn.apparel.WornApparel.Where(apparel => !validIHApparelDefNames.Contains(apparel.def.defName)
                 && apparel.def.defName != "Apparel_ArmorCataphractPhoenix" //Phoenix Armor excluded
                 && !HasSOS2DecompressionResistanceStat(apparel) //Apparels with SOS2 EVA property excluded
-                ).ToList();
-            return apparels;
+                );
         }
     }
 }
