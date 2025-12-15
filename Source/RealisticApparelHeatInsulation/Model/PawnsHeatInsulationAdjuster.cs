@@ -207,7 +207,6 @@ namespace RAHI.Model
                     pawn.health.AddHediff(hediffAdjustedMaxCT);
                 }
 
-                hediffAdjustedMaxCT.Severity = 0;
                 float vanillaMaxCTRaceActual = pawn.GetStatValue(StatDefOf.ComfyTemperatureMax);
                 float finalMaxCT = vanillaMaxCTRaceActual - maxCTPenaltiesTotal + maxCTBonusFromGenesValue + maxCTBonusFromExposedBodyPart;
                 finalMaxCT = Math.Max(finalMaxCT, 21.0f);
