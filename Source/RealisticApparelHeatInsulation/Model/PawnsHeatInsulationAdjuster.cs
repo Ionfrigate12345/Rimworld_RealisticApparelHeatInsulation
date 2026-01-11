@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using RealisticApparelHeatInsulation.Global;
 using RimWorld;
 using RimWorld.Planet;
@@ -24,8 +25,6 @@ namespace RAHI.Model
 
         public override void WorldComponentTick()
         {
-            base.WorldComponentTick();
-
             var tickCount = Find.TickManager.TicksGame;
             var checkInteval = GenDate.TicksPerHour;
             if (tickCount % checkInteval != 123)
@@ -36,7 +35,9 @@ namespace RAHI.Model
             var efficiencyBonusExposedLegs = RAHIModWindow.Instance.settings.efficiencyBonusExposedLegs;
 
             var playerPawns = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction_NoCryptosleep
-                .Where(p => p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer).ToList();
+                .Where(p => p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer);
+
+            var buf = new StringBuilder(1024);
 
             foreach (var pawn in playerPawns)
             {
@@ -52,8 +53,8 @@ namespace RAHI.Model
                 else if (pawn.GetCaravan() is Caravan caravan)
                 {
                     //Pawns on world map: Get caravan biome and temperature
-                    biome = pawn.GetCaravan().Biome;
-                    temperature = Find.WorldGrid[pawn.GetCaravan().Tile].temperature;
+                    biome = caravan.Biome;
+                    temperature = Find.WorldGrid[caravan.Tile].temperature;
                 }
                 else
                 {
@@ -104,8 +105,8 @@ namespace RAHI.Model
                 }
 
                 //Apparel_Duster, Apparel_CowboyHat, Apparel_Shadecone, Apparel_HatHood are considerred as Heat Insulation apparels (HIA)
-                List<Apparel> apparelsHI = UtilsApparel.GetAllHeatInsulationClothingsOnPawn(pawn);
-                List<Apparel> apparelsNonHI = UtilsApparel.GetAllEligibleNonHeatInsulationClothingsOnPawn(pawn);
+                var apparelsHI = UtilsApparel.GetAllHeatInsulationClothingsOnPawn(pawn);
+                var apparelsNonHI = UtilsApparel.GetAllEligibleNonHeatInsulationClothingsOnPawn(pawn);
 
                 /** Humidity penalties (stackable) on pawn: 
                     * In wet biomes and weathers, pawns will suffer more maxHC penalty for each clothing piece worn.
@@ -136,9 +137,9 @@ namespace RAHI.Model
                         Ancient Mech Armors
                 */
 
-                List<MaxCTPenalty> maxCTPenaltiesNonHIA = CalculateMaxCTPenaltyNonHIA(apparelsNonHI, humidityPenaltyPerApparelTotal);
-                List<MaxCTPenalty> maxCTPenaltiesHIA = CalculateMaxCTPenaltyHIA(apparelsHI, biome, humidityPenaltyPerApparelTotal);
-                List<MaxCTPenalty> maxCTPenalties = maxCTPenaltiesNonHIA.Concat(maxCTPenaltiesHIA).ToList();
+                var maxCTPenaltiesNonHIA = CalculateMaxCTPenaltyNonHIA(apparelsNonHI, humidityPenaltyPerApparelTotal);
+                var maxCTPenaltiesHIA = CalculateMaxCTPenaltyHIA(apparelsHI, biome, humidityPenaltyPerApparelTotal);
+                var maxCTPenalties = maxCTPenaltiesNonHIA.Concat(maxCTPenaltiesHIA);
 
                 //Get race base MaxCT value.
                 float maxCTRace = pawn.def.GetStatValueAbstract(StatDefOf.ComfyTemperatureMax);
@@ -206,7 +207,6 @@ namespace RAHI.Model
                     pawn.health.AddHediff(hediffAdjustedMaxCT);
                 }
 
-                hediffAdjustedMaxCT.Severity = 0;
                 float vanillaMaxCTRaceActual = pawn.GetStatValue(StatDefOf.ComfyTemperatureMax);
                 float finalMaxCT = vanillaMaxCTRaceActual - maxCTPenaltiesTotal + maxCTBonusFromGenesValue + maxCTBonusFromExposedBodyPart;
                 finalMaxCT = Math.Max(finalMaxCT, 21.0f);
@@ -219,20 +219,24 @@ namespace RAHI.Model
                 hediffAdjustedMaxCT.Severity = Math.Abs(finalMaxCTModifier) * 0.01f + (finalMaxCTModifier < 0 ? 1.0f : 0);
 
                 //Dynamic description
-                string descDetailApparels = "";
+                buf.Clear();
                 foreach (var maxCTPenalty in maxCTPenalties)
                 {
                     if (maxCTPenalty.Apparel != null)
                     {
-                        descDetailApparels += "\n" + maxCTPenalty.Apparel.Label + " : "
-                            + maxCTPenalty.MaxCTDefault.ToString("0.0")
-                            + " / "
-                            + (maxCTPenalty.MaxCTDefault - maxCTPenalty.MaxCTReduction).ToString("0.0")
-                        ;
+                        buf.Append("\n");
+                        buf.Append(maxCTPenalty.Apparel.Label);
+                        buf.Append(" : ");
+                        buf.Append(maxCTPenalty.MaxCTDefault.ToString("0.0"));
+                        buf.Append(" / ");
+                        buf.Append((maxCTPenalty.MaxCTDefault - maxCTPenalty.MaxCTReduction).ToString("0.0"));
                     }
                 }
-                var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
-                comp.CustomDescription = new TaggedString("RAHI_Hediff_Description".Translate(
+                string descDetailApparels = buf.ToString();
+
+                buf.Clear();
+                buf.Append(
+                    new TaggedString("RAHI_Hediff_Description".Translate(
                         (int)Math.Round(vanillaMaxCTRaceActual), 
                         (int)Math.Round(finalMaxCT),
                         maxCTRace,
@@ -243,15 +247,17 @@ namespace RAHI.Model
                         maxCTHumidityPenaltyPerApparelWeather,
                         maxCTPenaltiesTotalApparelsMassKg,
                         descDetailApparels
-                    )
+                    ))
                 );
-                if (!String.IsNullOrEmpty(exposedBodyPartDesc))
+                if (!string.IsNullOrEmpty(exposedBodyPartDesc))
                 {
-                    comp.CustomDescription += "\n";
-                    comp.CustomDescription += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts".Translate());
-                    comp.CustomDescription += "\n";
-                    comp.CustomDescription += exposedBodyPartDesc;
+                    buf.Append("\n");
+                    buf.Append(Strings.RAHI_Hediff_Description_Exposed_Bodyparts.Value);
+                    buf.Append("\n");
+                    buf.Append(exposedBodyPartDesc);
                 }
+                var comp = hediffAdjustedMaxCT.TryGetComp<HediffComp_DescriptionModifier>();
+                comp.CustomDescription = buf.ToString();
             }
         }
 
@@ -292,11 +298,10 @@ namespace RAHI.Model
             humidityPenaltyPerApparelTotal = humidityPenaltyPerApparelBiome + humidityPenaltyPerApparelWeather;
         }
 
-        private List<MaxCTPenalty> CalculateMaxCTPenaltyNonHIA(List<Apparel> apparelsNonHI,
+        private IEnumerable<MaxCTPenalty> CalculateMaxCTPenaltyNonHIA(IEnumerable<Apparel> apparelsNonHI,
             float humidityPenaltyPerApparelTotal
             )
         {
-            List<MaxCTPenalty> maxCTPenalties = new List<MaxCTPenalty>();
             foreach (var apparel in apparelsNonHI)
             {
                 float defaultMaxCTBonus = UtilsApparel.GetApparelDefaultMaxComfortableTemperatureBonus(apparel);
@@ -327,17 +332,15 @@ namespace RAHI.Model
                     }
                 }
 
-                maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, maxCTReduction + humidityPenaltyPerApparelTotal));
+                yield return new MaxCTPenalty(apparel, defaultMaxCTBonus, maxCTReduction + humidityPenaltyPerApparelTotal);
             }
-            return maxCTPenalties;
         }
 
-        private List<MaxCTPenalty> CalculateMaxCTPenaltyHIA(List<Apparel> apparelsHI,
+        private IEnumerable<MaxCTPenalty> CalculateMaxCTPenaltyHIA(IEnumerable<Apparel> apparelsHI,
             BiomeDef biome, 
             float humidityPenaltyPerApparelTotal
             )
         {
-            List<MaxCTPenalty> maxCTPenalties = new List<MaxCTPenalty>();
             foreach (var apparel in apparelsHI)
             {
                 float maxCTReduction = 0;
@@ -350,7 +353,7 @@ namespace RAHI.Model
                     maxCTReduction = defaultMaxCTBonus //For voiding default maxCT bonus before applying reduction
                         + defaultMaxCTBonus * RAHIModWindow.Instance.settings.maxCTReductionPerVanillaBonusHIA;
 
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, maxCTReduction));
+                    yield return new MaxCTPenalty(apparel, defaultMaxCTBonus, maxCTReduction);
                     continue;
                 }
 
@@ -359,20 +362,19 @@ namespace RAHI.Model
                         || biome == RAHIDefOf.ExtremeDesert
                         || biome == RAHIDefOf.AridShrubland)
                 {
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, -defaultMaxCTBonus * 0.25f));
+                    yield return new MaxCTPenalty(apparel, defaultMaxCTBonus, -defaultMaxCTBonus * 0.25f);
                 }
                 //Temperate Forest can benefit from reduced heat insulation bonus compared with vanilla
                 else if (biome == BiomeDefOf.TemperateForest)
                 {
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel,defaultMaxCTBonus, defaultMaxCTBonus * 0.5f));
+                    yield return new MaxCTPenalty(apparel,defaultMaxCTBonus, defaultMaxCTBonus * 0.5f);
                 }
                 //For all other non-humidity biomes (cold biomes), HIA wont get heat insulation nor penalty
                 else
                 {
-                    maxCTPenalties.Add(new MaxCTPenalty(apparel, defaultMaxCTBonus, defaultMaxCTBonus));
+                    yield return new MaxCTPenalty(apparel, defaultMaxCTBonus, defaultMaxCTBonus);
                 }
             }
-            return maxCTPenalties;
         }
 
         private float CalculateMaxCTPenaltyTotalApparelsWeight(Pawn pawn)
@@ -442,6 +444,7 @@ namespace RAHI.Model
             out bool wearingSkirt
             )
         {
+            List<string> buf = new(5);
             var allApparels = pawn.apparel.WornApparel;
             coveredShoulders = false;
             coveredArms = false;
@@ -473,42 +476,42 @@ namespace RAHI.Model
                 + (!coveredTorso ? RAHIModWindow.Instance.settings.maxCTBonusExposedTorso : 0)
                 + (!coveredNeck ? RAHIModWindow.Instance.settings.maxCTBonusExposedNeck : 0)
                 ;
-            exposedBodyPartDesc = "";
             if (!coveredShoulders)
             {
-                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders".Translate()) + "\n";
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders.Value);
             }
             if (!coveredArms)
             {
-                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Arms".Translate()) + "\n";
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Arms.Value);
             }
             if (!coveredLegs)
             {
                 if (wearingShort)
                 {
-                    exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short".Translate()) + "\n";
+                    buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short.Value);
                 }
                 else if (wearingSkirt)
                 {
-                    exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt".Translate()) + "\n";
+                    buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt.Value);
                 }
                 else
                 {
-                    exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs".Translate()) + "\n";
+                    buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Legs.Value);
                 }
             }
             if (!coveredTorso)
             {
-                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Torso".Translate()) + "\n";
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Torso.Value);
             }
             if (!coveredNeck)
             {
-                exposedBodyPartDesc += new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Neck".Translate()) + "\n";
+                buf.Add(Strings.RAHI_Hediff_Description_Exposed_Bodyparts_Neck.Value);
             }
+            exposedBodyPartDesc = string.Join("\n", buf);
             return Math.Min(bonus, RAHIModWindow.Instance.settings.maxCTBonusExposedMaxTotal);
         }
 
-        private float CalculateMaxCTPenaltiesApparelTotal(List<MaxCTPenalty> maxCTPenalties)
+        private float CalculateMaxCTPenaltiesApparelTotal(IEnumerable<MaxCTPenalty> maxCTPenalties)
         {
             float sum = 0;
             foreach(var maxCTPenalty in maxCTPenalties)
@@ -538,31 +541,74 @@ namespace RAHI.Model
             }
             foreach (var bodyPart in bodyParts)
             {
-                // Remove existing hediff on this body part
-                var existingHediff = pawn.health.hediffSet.hediffs
+                var hediff = pawn.health.hediffSet.hediffs
                     .FirstOrDefault(x => x.def == RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost && x.Part == bodyPart);
-                if (existingHediff != null)
-                {
-                    pawn.health.RemoveHediff(existingHediff);
-                }
-
                 if (efficiencyBonus <= 0)
                 {
-                    continue; 
+                    if (hediff != null) pawn.health.RemoveHediff(hediff);
                 }
-
-                //Log.Message($"[RAHI] Applying Hediff to {pawn.Name} for {bodyPart.Label} ({bodyPart.def.defName}), efficiencyBonus: {efficiencyBonus}");
-
-                // Create and apply the hediff
-                Hediff hediff = HediffMaker.MakeHediff(RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost, pawn, bodyPart);
-                if (hediff == null)
+                else
                 {
-                    Log.Error("[RAHI] HediffMaker.MakeHediff returned null!");
-                    continue;
+                    if (hediff is null)
+                    {
+                        hediff = HediffMaker.MakeHediff(RAHIDefOf.RAHI_ExposedBodyPartsEfficiencyBoost, pawn, bodyPart);
+                        if (hediff is null)
+                        {
+                            Log.Error("[RAHI] HediffMaker.MakeHediff returned null!");
+                            continue;
+                        }
+                        pawn.health.AddHediff(hediff);
+                    }
+                    if (hediff.Severity != efficiencyBonus)
+                    {
+                        hediff.Severity = efficiencyBonus;
+                    }
                 }
-                pawn.health.AddHediff(hediff);
-                hediff.Severity = efficiencyBonus;
             }
         }
+
+        private static class Strings
+        {
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Shoulders".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Arms = new(delegate
+            {        
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Arms".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Short".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs_Skirt".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Legs = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Legs".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Torso = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Torso".Translate());
+            });
+
+            internal static readonly Lazy<string> RAHI_Hediff_Description_Exposed_Bodyparts_Neck = new(delegate
+            {
+                return new TaggedString("RAHI_Hediff_Description_Exposed_Bodyparts_Neck".Translate());
+            });
+        }
+
     }
 }
