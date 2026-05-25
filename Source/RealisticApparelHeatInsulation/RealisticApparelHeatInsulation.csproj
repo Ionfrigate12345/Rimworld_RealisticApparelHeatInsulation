@@ -13,6 +13,7 @@
 
     <OutputPath>..\..\1.6\Assemblies</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <BaseOutputPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\RealisticApparelHeatInsulation\1.6\Assemblies</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

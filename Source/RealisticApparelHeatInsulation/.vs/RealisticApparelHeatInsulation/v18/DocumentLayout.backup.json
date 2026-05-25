@@ -1,0 +1,197 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\model\\pawnsheatinsulationadjuster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:model\\pawnsheatinsulationadjuster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\entity\\maxctpenalty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:entity\\maxctpenalty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\global\\utilsapparel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:global\\utilsapparel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\global\\utilspawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:global\\utilspawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\def\\rahidefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:def\\rahidefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\def\\hediff\\hediffcomp_descriptionmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:def\\hediff\\hediffcomp_descriptionmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\def\\hediff\\hediffcomp_statmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:def\\hediff\\hediffcomp_statmodifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\view\\rahimodwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:view\\rahimodwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|c:\\users\\xt_sh\\onedrive\\games\\rimworldmodsources\\realisticapparelheatinsulation\\source\\realisticapparelheatinsulation\\model\\rahimodsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A681D535-9D46-4B8C-B947-0F3A07944CD9}|RealisticApparelHeatInsulation.csproj|solutionrelative:model\\rahimodsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PawnsHeatInsulationAdjuster.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Model\\PawnsHeatInsulationAdjuster.cs",
+              "RelativeDocumentMoniker": "Model\\PawnsHeatInsulationAdjuster.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Model\\PawnsHeatInsulationAdjuster.cs",
+              "RelativeToolTip": "Model\\PawnsHeatInsulationAdjuster.cs",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAANgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UtilsPawn.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsPawn.cs",
+              "RelativeDocumentMoniker": "Global\\UtilsPawn.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsPawn.cs",
+              "RelativeToolTip": "Global\\UtilsPawn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UtilsApparel.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsApparel.cs",
+              "RelativeDocumentMoniker": "Global\\UtilsApparel.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Global\\UtilsApparel.cs",
+              "RelativeToolTip": "Global\\UtilsApparel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HediffComp_StatModifier.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Def\\Hediff\\HediffComp_StatModifier.cs",
+              "RelativeDocumentMoniker": "Def\\Hediff\\HediffComp_StatModifier.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Def\\Hediff\\HediffComp_StatModifier.cs",
+              "RelativeToolTip": "Def\\Hediff\\HediffComp_StatModifier.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HediffComp_DescriptionModifier.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Def\\Hediff\\HediffComp_DescriptionModifier.cs",
+              "RelativeDocumentMoniker": "Def\\Hediff\\HediffComp_DescriptionModifier.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Def\\Hediff\\HediffComp_DescriptionModifier.cs",
+              "RelativeToolTip": "Def\\Hediff\\HediffComp_DescriptionModifier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RAHIDefOf.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Def\\RAHIDefOf.cs",
+              "RelativeDocumentMoniker": "Def\\RAHIDefOf.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Def\\RAHIDefOf.cs",
+              "RelativeToolTip": "Def\\RAHIDefOf.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAApwCEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MaxCTPenalty.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Entity\\MaxCTPenalty.cs",
+              "RelativeDocumentMoniker": "Entity\\MaxCTPenalty.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Entity\\MaxCTPenalty.cs",
+              "RelativeToolTip": "Entity\\MaxCTPenalty.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RAHIModWindow.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\View\\RAHIModWindow.cs",
+              "RelativeDocumentMoniker": "View\\RAHIModWindow.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\View\\RAHIModWindow.cs",
+              "RelativeToolTip": "View\\RAHIModWindow.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwB4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Main.cs",
+              "RelativeDocumentMoniker": "Main.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Main.cs",
+              "RelativeToolTip": "Main.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RAHIModSettings.cs",
+              "DocumentMoniker": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Model\\RAHIModSettings.cs",
+              "RelativeDocumentMoniker": "Model\\RAHIModSettings.cs",
+              "ToolTip": "C:\\Users\\xt_sh\\OneDrive\\Games\\RimworldModSources\\RealisticApparelHeatInsulation\\Source\\RealisticApparelHeatInsulation\\Model\\RAHIModSettings.cs",
+              "RelativeToolTip": "Model\\RAHIModSettings.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAkwD8AAAB/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-25T21:30:29.253Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

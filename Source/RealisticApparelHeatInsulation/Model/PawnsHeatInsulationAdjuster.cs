@@ -208,8 +208,13 @@ namespace RAHI.Model
                 }
 
                 float vanillaMaxCTRaceActual = pawn.GetStatValue(StatDefOf.ComfyTemperatureMax);
-                float finalMaxCT = vanillaMaxCTRaceActual - maxCTPenaltiesTotal + maxCTBonusFromGenesValue + maxCTBonusFromExposedBodyPart;
+
+                float finalMaxCT = vanillaMaxCTRaceActual - maxCTPenaltiesTotal;
                 finalMaxCT = Math.Max(finalMaxCT, 21.0f);
+                //Gene and body exposure bonus are applied in case minimum 21C reached.
+                finalMaxCT += maxCTBonusFromGenesValue;
+                finalMaxCT += maxCTBonusFromExposedBodyPart;
+
                 int finalMaxCTModifier = (int)Math.Round(finalMaxCT - vanillaMaxCTRaceActual);
                 //Use minSeverity tag as stage selector
                 //Positive modifiers use severity 0.xx, while negative 1.xx
