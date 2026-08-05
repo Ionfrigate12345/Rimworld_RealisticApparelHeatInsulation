@@ -24,9 +24,12 @@ namespace RAHI.Def
         public static WeatherDef RainyThunderstorm;
         public static WeatherDef FoggyRain;
 
-        //Genes
+        //Genes (Biotech DLC)
+        [MayRequireBiotech]
         public static GeneDef FireResistant;
+        [MayRequireBiotech]
         public static GeneDef MaxTemp_SmallIncrease;
+        [MayRequireBiotech]
         public static GeneDef MaxTemp_LargeIncrease;
 
         //Hediff
